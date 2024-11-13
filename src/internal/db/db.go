@@ -12,5 +12,9 @@ func NewDB(c string) (*pgx.Conn, error) {
 		return nil, err
 	}
 
+	if err = migrate(conn); err != nil {
+		return nil, err
+	}
+
 	return conn, nil
 }
