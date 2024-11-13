@@ -9,7 +9,6 @@ import (
 )
 
 func main() {
-
 	cfg, err := loadConfig.NewConfig()
 	if err != nil {
 		log.Fatalf("Failed init config: %v", err)
@@ -19,8 +18,6 @@ func main() {
 	if err != nil {
 		log.Fatalf("Failed to connect DB: %v", err)
 	}
-
-	_ = storage
 
 	router := gin.Default()
 	server := api.NewServer(storage, router)

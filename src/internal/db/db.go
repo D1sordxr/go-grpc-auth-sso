@@ -6,8 +6,7 @@ import (
 )
 
 type Storage struct {
-	DB  *pgx.Conn
-	DSN string
+	DB *pgx.Conn
 }
 
 func NewDB(c string) (*Storage, error) {
