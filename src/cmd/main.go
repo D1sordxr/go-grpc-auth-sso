@@ -23,8 +23,10 @@ func main() {
 	_ = storage
 
 	router := gin.Default()
-	api.Setup(router)
-	if err = router.Run(); err != nil {
+	server := api.NewServer(storage, router)
+	api.Setup(server)
+
+	if err = server.Run(); err != nil {
 		log.Fatalf("Error starting server: %v", err)
 	}
 

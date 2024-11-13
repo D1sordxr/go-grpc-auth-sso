@@ -66,6 +66,11 @@
     ]
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Олег\go\src\aviasales\src\internal\db" />
+    </key>
+  </component>
   <component name="RunManager" selected="Go Build.go build main.go">
     <configuration name="go build load-config.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="aviasales" />
@@ -97,6 +102,7 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build main.go" />
         <item itemvalue="Go Build.go build main.go" />
         <item itemvalue="Go Build.go build main.go" />
         <item itemvalue="Go Build.go build load-config.go" />

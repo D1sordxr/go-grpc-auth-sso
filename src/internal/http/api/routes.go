@@ -1,11 +1,9 @@
 package api
 
-import "github.com/gin-gonic/gin"
-
-func Setup(r *gin.Engine) {
-	api := r.Group("/tickets")
+func Setup(s *Server) {
+	api := s.Router.Group("/tickets")
 	{
-		api.GET("/ticket", GetTicket)
-		api.POST("/ticket", CreateTicket)
+		api.GET("/ticket", s.GetTicket)
+		api.POST("/ticket", s.CreateTicket)
 	}
 }

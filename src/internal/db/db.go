@@ -5,7 +5,12 @@ import (
 	"github.com/jackc/pgx/v5"
 )
 
-func NewDB(c string) (*pgx.Conn, error) {
+type Storage struct {
+	DB  *pgx.Conn
+	DSN string
+}
+
+func NewDB(c string) (*Storage, error) {
 	// urlExample := "postgres://username:password@localhost:5432/database_name"
 	conn, err := pgx.Connect(context.Background(), c)
 	if err != nil {
@@ -16,5 +21,7 @@ func NewDB(c string) (*pgx.Conn, error) {
 		return nil, err
 	}
 
-	return conn, nil
+	return &Storage{
+		DB: conn,
+	}, nil
 }
