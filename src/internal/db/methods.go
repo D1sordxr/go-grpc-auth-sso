@@ -40,3 +40,21 @@ func (s *Storage) CreateTicket(t models.Ticket) error {
 
 	return nil
 }
+
+func (s *Storage) UpdateTicket(t models.Ticket) error {
+	_ = t.ID
+	// TODO: in db and api
+
+	return nil
+}
+
+func (s *Storage) DeleteTicket(id string) error {
+	_, err := s.DB.Exec(context.Background(), `
+		DELETE FROM ticket WHERE ID = $1
+	`, id)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
