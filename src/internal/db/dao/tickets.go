@@ -1,6 +1,6 @@
 package dao
 
-// TODO:
+// TODO: transfer ticket methods here
 //func (s *db.Storage) CreateOrder() ([]models.Order, error) {
 //	var ticket models.Ticket
 //	rows, err := s.DB.Query(context.Background(), `
