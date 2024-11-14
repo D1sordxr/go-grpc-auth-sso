@@ -1,0 +1,14 @@
+app:
+  mode: "local"
+
+db: # host=localhost user=postgres password=rootroot dbname=Aviasales port=5433 sslmode=disable
+  host: "localhost"
+  user: "postgres"
+  password: "rootroot"
+  port: 5433
+  database: "Aviasales"
+  migration: true
+
+http_server:
+  address: "localhost"
+  port: "9999"

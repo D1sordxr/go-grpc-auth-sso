@@ -1,6 +1,6 @@
 package config
 
 type APIConfig struct {
-	Host string
-	Port string
+	Host string `yaml:"address"`
+	Port string `yaml:"port"`
 }

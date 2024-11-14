@@ -6,11 +6,11 @@ import (
 )
 
 type Config struct {
-	AppConfig
-	db.DBConfig
-	api.APIConfig
+	AppConfig     `yaml:"app"`
+	db.DBConfig   `yaml:"db"`
+	api.APIConfig `yaml:"http_server"`
 }
 
 type AppConfig struct {
-	Mode string
+	Mode string `yaml:"mode"`
 }

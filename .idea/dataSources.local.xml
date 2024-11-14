@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal" created-in="GO-241.18034.61">
-    <data-source name="tickets@localhost" uuid="0bcfadf0-7019-42ed-a1ca-1f1440b0cf00">
+    <data-source name="Aviasales@localhost" uuid="4d2b12c7-18eb-4b53-97b0-95578bf5b58f">
       <database-info product="PostgreSQL" version="17.0" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.6.0" dbms="POSTGRES" exact-version="17.0" exact-driver-version="42.6">
         <identifier-quote-string>&quot;</identifier-quote-string>
       </database-info>

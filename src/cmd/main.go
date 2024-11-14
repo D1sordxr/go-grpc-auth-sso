@@ -14,7 +14,7 @@ func main() {
 		log.Fatalf("Failed init config: %v", err)
 	}
 
-	storage, err := db.NewDB(cfg.DBConfig.DSN)
+	storage, err := db.NewDB(&cfg.DBConfig)
 	if err != nil {
 		log.Fatalf("Failed to connect DB: %v", err)
 	}

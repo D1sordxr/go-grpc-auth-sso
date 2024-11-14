@@ -5,7 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a0c3205f-8cf3-46cb-ab4c-699636d8cd82" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/configs/app/local.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmd/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/config/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/config/load-config.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/config/load-config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/db/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/db/config/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/db/db.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/db/db.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/http/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/http/config/config.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +79,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Олег\go\src\aviasales\src" />
       <recent name="C:\Users\Олег\go\src\aviasales\src\internal\db" />
     </key>
   </component>
