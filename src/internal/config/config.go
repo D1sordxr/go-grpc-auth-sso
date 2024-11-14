@@ -12,5 +12,5 @@ type Config struct {
 }
 
 type AppConfig struct {
-	Mode string `yaml:"mode"`
+	Mode string `yaml:"mode" env-default:"local"`
 }
