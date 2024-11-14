@@ -5,17 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a0c3205f-8cf3-46cb-ab4c-699636d8cd82" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/internal/db/models/order.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/internal/db/dao/tickets.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmd/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/internal/db/methods.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/db/methods.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/internal/db/migrations.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/db/migrations.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/internal/db/models/base.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/db/models/base.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/internal/db/models/ticket.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/db/models/ticket.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/internal/http/api/controllers.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/http/api/controllers.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/internal/http/api/routes.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/http/api/routes.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,6 +71,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Олег\go\src\aviasales\src\internal\db\dao" />
       <recent name="C:\Users\Олег\go\src\aviasales\src" />
       <recent name="C:\Users\Олег\go\src\aviasales\src\internal\db" />
     </key>
