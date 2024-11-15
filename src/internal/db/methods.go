@@ -1,11 +1,19 @@
 package db
 
 import (
+	"aviasales/src/internal/db/dao"
 	"aviasales/src/internal/db/models"
 	"context"
 	"fmt"
 	"time"
 )
+
+func (s *Storage) CreateOrder(order models.Order) error {
+	if err := dao.CreateOrder(s, order); err != nil {
+		return err
+	}
+	return nil
+}
 
 func (s *Storage) GetTickets() ([]models.Ticket, error) {
 	var ticket models.Ticket

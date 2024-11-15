@@ -2,9 +2,14 @@ package api
 
 import (
 	"aviasales/src/internal/db/models"
+	"aviasales/src/internal/http/api/order"
 	"github.com/gin-gonic/gin"
 	"strconv"
 )
+
+func (s *Server) CreateOrder(c *gin.Context) {
+	order.CreateOrder(s, c)
+}
 
 func (s *Server) GetTickets(c *gin.Context) {
 	data, err := s.DBConn.GetTickets()

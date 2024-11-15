@@ -8,4 +8,8 @@ func Setup(s *Server) {
 		api.PATCH("/ticket/:id", s.UpdateTicket)
 		api.DELETE("/ticket/:id", s.DeleteTicket)
 	}
+	order := s.Router.Group("/orders")
+	{
+		order.POST("/order", s.CreateOrder)
+	}
 }

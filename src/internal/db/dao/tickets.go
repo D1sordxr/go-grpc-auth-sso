@@ -2,10 +2,11 @@ package dao
 
 // TODO: transfer ticket methods here
 //func (s *db.Storage) CreateOrder() ([]models.Order, error) {
-//	var ticket models.Ticket
-//	rows, err := s.DB.Query(context.Background(), `
-//	SELECT id, passenger_name, destination, payment, dispatch_time, arrival_time FROM tickets
-//	 `)
+//	_, err := s.DB.Exec(context.Background(), `
+//		INSERT INTO orders(passenger_name, destination, payment, dispatch_time, arrival_time, created_at)
+//		VALUES ($1, $2, $3, $4, $5, NOW())`,
+//		t.PassengerName, t.Destination, t.Payment, t.DispatchTime, t.ArrivalTime,
+//	)
 //	if err != nil {
 //		return nil, err
 //	}
