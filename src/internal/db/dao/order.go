@@ -1,16 +1,22 @@
 package dao
 
 import (
-	"aviasales/src/internal/db"
 	"aviasales/src/internal/db/models"
 	"context"
 	"github.com/google/uuid"
+	"github.com/jackc/pgx/v5"
 	"time"
 )
 
-// TODO: fix import cycle
+type OrderDAO struct {
+	DB *pgx.Conn
+}
 
-func CreateOrder(s *db.Storage, order models.Order) error {
+func NewOrderDAO(conn *pgx.Conn) *OrderDAO {
+	return &OrderDAO{DB: conn}
+}
+
+func (dao *OrderDAO) CreateOrder(order models.Order) error {
 	clientID := uuid.New()
 	addressID := uuid.New()
 	serialNumber := func() int {
@@ -18,7 +24,7 @@ func CreateOrder(s *db.Storage, order models.Order) error {
 		return int(now.UnixNano() % 1000000000)
 	}()
 
-	tx, err := s.DB.Begin(context.Background())
+	tx, err := dao.DB.Begin(context.Background())
 	if err != nil {
 		return err
 	}

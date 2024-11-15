@@ -2,13 +2,13 @@ package api
 
 import (
 	"aviasales/src/internal/db/models"
-	"aviasales/src/internal/http/api/order"
 	"github.com/gin-gonic/gin"
 	"strconv"
 )
 
 func (s *Server) CreateOrder(c *gin.Context) {
-	order.CreateOrder(s, c)
+	//order.CreateOrder(s, c)
+	c.JSON(418, "still in progress")
 }
 
 func (s *Server) GetTickets(c *gin.Context) {
@@ -67,7 +67,7 @@ func (s *Server) DeleteTicket(c *gin.Context) {
 
 	err := s.DBConn.DeleteTicket(id)
 	if err != nil {
-		c.JSON(500, "Error creating ticket: "+err.Error())
+		c.JSON(500, "Error deleting ticket: "+err.Error())
 		return
 	}
 	c.JSON(200, "Successfully deleted!")
