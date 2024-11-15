@@ -7,8 +7,7 @@ import (
 )
 
 func (s *Server) CreateOrder(c *gin.Context) {
-	//order.CreateOrder(s, c)
-	c.JSON(418, "still in progress")
+	//order.ServerOrder.CreateOrder(s, c)
 }
 
 func (s *Server) GetTickets(c *gin.Context) {

@@ -11,6 +11,7 @@ type Server struct {
 }
 
 func NewServer(storage *db.Storage, router *gin.Engine) *Server {
+	//order.NewServerOrder(storage, router)
 	return &Server{
 		DBConn: storage,
 		Router: router,

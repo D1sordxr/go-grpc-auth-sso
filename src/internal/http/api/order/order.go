@@ -7,7 +7,11 @@ import (
 	"net/http"
 )
 
-// TODO: fix import cycle
+// OrderController TODO: NewOrderController and NewTicketController
+type OrderController interface {
+}
+type orderController struct {
+}
 
 func CreateOrder(s *api.Server, c *gin.Context) {
 	var order models.Order
