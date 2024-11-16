@@ -3,8 +3,12 @@ package api
 import (
 	"aviasales/src/internal/config"
 	"aviasales/src/internal/db"
+	orderHandler "aviasales/src/internal/http/api/controllers/handlers/order"
 	ok "aviasales/src/internal/http/api/controllers/handlers/statusOk"
+	ticketHandler "aviasales/src/internal/http/api/controllers/handlers/ticket"
+	orderRoutes "aviasales/src/internal/http/api/controllers/routes/order"
 	"aviasales/src/internal/http/api/controllers/routes/statusOk"
+	ticketRoutes "aviasales/src/internal/http/api/controllers/routes/ticket"
 	"github.com/gin-gonic/gin"
 )
 
@@ -31,8 +35,20 @@ func (s *Server) Run() error {
 	return nil
 }
 
+// TODO: move from ...Controllers modules to controllers package
 func (s *Server) registerRoutes() {
+	// Main path
 	api := s.Router.Group("/api")
+
+	// Status path
 	okHandler := ok.NewOkHandler(s.DBConn)
 	statusOk.NewOkRoutes(api, okHandler)
+
+	// Orders path
+	orderHandlers := orderHandler.NewOrderHandler(s.DBConn)
+	orderRoutes.NewOrderRoutes(api, orderHandlers)
+
+	// Tickets path
+	ticketHandlers := ticketHandler.NewTicketHandler(s.DBConn)
+	ticketRoutes.NewTicketRoutes(api, ticketHandlers)
 }

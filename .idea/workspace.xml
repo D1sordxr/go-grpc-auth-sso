@@ -5,9 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a0c3205f-8cf3-46cb-ab4c-699636d8cd82" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/internal/http/api/controllers/handlers/statusOk/statusOk.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/internal/http/api/controllers/routes/statusOk/statusOk.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/internal/http/api/controllers/handlers/order/order.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/internal/http/api/controllers/handlers/ticket/ticket.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/internal/http/api/controllers/routes/ticket/ticket.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/http/api/order/order.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/http/api/controllers/routes/order/order.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/http/api/order/routes.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/http/api/order/server.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/internal/http/api/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/http/api/server.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -71,6 +75,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Олег\go\src\aviasales\src\internal\http\api\controllers\routes" />
       <recent name="C:\Users\Олег\go\src\aviasales\src\internal\http\api" />
       <recent name="C:\Users\Олег\go\src\aviasales\src\internal\db\dao" />
       <recent name="C:\Users\Олег\go\src\aviasales\src" />
