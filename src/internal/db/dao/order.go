@@ -53,9 +53,9 @@ func (dao *OrderDAO) CreateOrder(order models.Order) (int, error) {
 	for _, v := range order.Tickets {
 		_, err = tx.Exec(context.Background(), `
 			UPDATE tickets 
-			SET order_id = $1
-			WHERE id = $2
-		`, orderID, v.ID)
+			SET order_id = $1, passenger_name = $2
+			WHERE id = $3
+		`, orderID, clientID, v.ID)
 		if err != nil {
 			_ = tx.Rollback(context.Background())
 			return 0, err
@@ -83,7 +83,12 @@ func (dao *OrderDAO) GetOrder(id int) (models.Order, error) {
 		o.closed, 
 		o.deleted,
 		t.id,
-		t.payment
+		t.order_id,
+		t.passenger_name,
+		t.destination,
+		t.payment,
+		t.dispatch_time,
+		t.arrival_time
 		FROM orders o
 		LEFT JOIN tickets t ON o.id = t.order_id 
 		WHERE o.id = $1
@@ -107,7 +112,12 @@ func (dao *OrderDAO) GetOrder(id int) (models.Order, error) {
 			&order.Closed,
 			&order.Deleted,
 			&ticket.ID,
+			&ticket.OrderID,
+			&ticket.PassengerName,
+			&ticket.Destination,
 			&ticket.Payment,
+			&ticket.DispatchTime,
+			&ticket.ArrivalTime,
 		)
 
 		if err != nil {
