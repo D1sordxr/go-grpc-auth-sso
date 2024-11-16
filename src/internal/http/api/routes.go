@@ -12,8 +12,9 @@ func Setup(s *Server) {
 	orders := s.Router.Group("/orders")
 	{
 		orders.POST("/order", s.CreateOrder)
-		// TODO: orders.GET("/order/:id", s.GetOrder)
+		orders.GET("/order/:id", s.GetOrder)
 		// TODO: orders.POST("/order/:id ", s.PayOrder)
 		// TODO: orders.POST("/order/:id", s.DeleteOrder)
 	}
+	// TODO: client := s.Router.Group("/clients"); {}
 }

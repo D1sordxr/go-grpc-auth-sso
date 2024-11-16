@@ -1,6 +1,7 @@
 package api
 
 import (
+	"aviasales/src/internal/config"
 	"aviasales/src/internal/db"
 	"github.com/gin-gonic/gin"
 )
@@ -8,17 +9,20 @@ import (
 type Server struct {
 	DBConn *db.Storage
 	Router *gin.Engine
+	Config *config.Config
 }
 
-func NewServer(storage *db.Storage, router *gin.Engine) *Server {
+func NewServer(storage *db.Storage, router *gin.Engine, cfg *config.Config) *Server {
 	return &Server{
 		DBConn: storage,
 		Router: router,
+		Config: cfg,
 	}
 }
 
 func (s *Server) Run() error {
-	if err := s.Router.Run(); err != nil {
+	port := ":" + s.Config.APIConfig.Port
+	if err := s.Router.Run(port); err != nil {
 		return err
 	}
 	return nil

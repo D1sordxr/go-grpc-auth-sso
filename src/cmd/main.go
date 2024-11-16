@@ -20,7 +20,7 @@ func main() {
 	}
 
 	router := gin.Default()
-	server := api.NewServer(storage, router)
+	server := api.NewServer(storage, router, cfg)
 	api.Setup(server)
 
 	if err = server.Run(); err != nil {

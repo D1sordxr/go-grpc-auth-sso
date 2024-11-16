@@ -133,6 +133,7 @@ func (dao *OrderDAO) GetOrder(id int) (models.Order, error) {
 		t.passenger_name,
 		t.destination,
 		t.payment,
+		t.is_available,
 		t.dispatch_time,
 		t.arrival_time
 		FROM orders o
@@ -163,6 +164,7 @@ func (dao *OrderDAO) GetOrder(id int) (models.Order, error) {
 			&ticket.PassengerName,
 			&ticket.Destination,
 			&ticket.Payment,
+			&ticket.IsAvailable,
 			&ticket.DispatchTime,
 			&ticket.ArrivalTime,
 		)

@@ -4,6 +4,7 @@ import (
 	"aviasales/src/internal/db/models"
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"strconv"
 )
 
 func (s *Server) CreateOrder(c *gin.Context) {
@@ -26,6 +27,17 @@ func (s *Server) CreateOrder(c *gin.Context) {
 	})
 }
 
-// TODO: func (s *Server) GetOrder(c *gin.Context) {}
+func (s *Server) GetOrder(c *gin.Context) {
+	strID := c.Param("id")
+	id, err := strconv.ParseInt(strID, 0, 64)
+	if err != nil {
+		c.JSON(400, "can't parse id")
+		return
+	}
+	data, err := s.DBConn.GetOrder(int(id))
+
+	c.JSON(200, gin.H{"order_data": data})
+}
+
 // TODO: func (s *Server) PayOrder(c *gin.Context) {}
 // TODO: func (s *Server) DeleteOrder(c *gin.Context) {}
