@@ -19,7 +19,7 @@ func NewTicketDAO(conn *pgx.Conn) *TicketDAO {
 func (dao *TicketDAO) GetTickets() ([]models.Ticket, error) {
 	var ticket models.Ticket
 	rows, err := dao.DB.Query(context.Background(), `
-	SELECT id, passenger_name, destination, payment, dispatch_time, arrival_time FROM tickets
+	SELECT id, passenger_name, destination, payment, dispatch_time, arrival_time, is_available FROM tickets
 	 `)
 	if err != nil {
 		return nil, err
@@ -30,7 +30,7 @@ func (dao *TicketDAO) GetTickets() ([]models.Ticket, error) {
 		if err = rows.Scan(
 			&ticket.ID, &ticket.PassengerName, &ticket.Destination,
 			&ticket.Payment, &ticket.DispatchTime, &ticket.ArrivalTime,
-		); err != nil {
+			&ticket.IsAvailable); err != nil {
 			return nil, err
 		}
 		data = append(data, ticket)

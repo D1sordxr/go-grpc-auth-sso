@@ -18,6 +18,11 @@ func migrate(conn *pgx.Conn) error {
 		log.Fatalf("Failed migrations: %s", err)
 	}
 
+	err = updateTicketTableAddColumnIsAvailable(conn)
+	if err != nil {
+		log.Fatalf("Failed migrations: %s", err)
+	}
+
 	return nil
 }
 
@@ -34,17 +39,10 @@ func createOrderTable(conn *pgx.Conn) error {
             deleted BOOLEAN DEFAULT FALSE,
             created_at TIMESTAMP DEFAULT NOW(),
             updated_at TIMESTAMP DEFAULT NOW()
-	);
+	); CREATE INDEX IF NOT EXISTS idx_order_number ON orders(serial_number);
 	`)
 	if err != nil {
 		return fmt.Errorf("error creating order table: %w", err)
-	}
-
-	_, err = conn.Exec(context.Background(),
-		`CREATE INDEX IF NOT EXISTS idx_order_number ON orders(serial_number);
-	`)
-	if err != nil {
-		return fmt.Errorf("error creating order index: %w", err)
 	}
 
 	return nil
@@ -62,17 +60,22 @@ func createTicketTable(conn *pgx.Conn) error {
 			arrival_time TIMESTAMP NOT NULL,
 			created_at TIMESTAMP DEFAULT NOW(),
 			updated_at TIMESTAMP DEFAULT NOW()                    
-		);
+		); 		
+		CREATE INDEX IF NOT EXISTS idx_ticket_passenger ON tickets(passenger_name);
 	`)
 	if err != nil {
 		return fmt.Errorf("error creating ticket table: %w", err)
 	}
 
-	_, err = conn.Exec(context.Background(), `
-		CREATE INDEX IF NOT EXISTS idx_ticket_passenger ON tickets(passenger_name);
+	return nil
+}
+
+func updateTicketTableAddColumnIsAvailable(conn *pgx.Conn) error {
+	_, err := conn.Exec(context.Background(), `
+		ALTER TABLE tickets ADD COLUMN IF NOT EXISTS is_available BOOLEAN DEFAULT TRUE 
 	`)
 	if err != nil {
-		return fmt.Errorf("error creating ticket index: %w", err)
+		return err
 	}
 
 	return nil

@@ -3,6 +3,7 @@ package dao
 import (
 	"aviasales/src/internal/db/models"
 	"context"
+	"errors"
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5"
 	"time"
@@ -17,6 +18,14 @@ func NewOrderDAO(conn *pgx.Conn) *OrderDAO {
 }
 
 func (dao *OrderDAO) CreateOrder(order models.Order) (int, error) {
+	isAvailable, err := dao.ticketsAvailabilityCheck(order.Tickets)
+	if err != nil {
+		return 0, err
+	}
+	if !isAvailable {
+		return 0, errors.New("ticket is not available")
+	}
+
 	clientID := uuid.New()
 	addressID := uuid.New()
 	serialNumber := func() int {
@@ -53,9 +62,12 @@ func (dao *OrderDAO) CreateOrder(order models.Order) (int, error) {
 	for _, v := range order.Tickets {
 		_, err = tx.Exec(context.Background(), `
 			UPDATE tickets 
-			SET order_id = $1, passenger_name = $2
-			WHERE id = $3
-		`, orderID, clientID, v.ID)
+			SET 
+			    order_id = $1, 
+				passenger_name = $2,
+				is_available = $3
+			WHERE id = $4 
+		`, orderID, clientID, false, v.ID)
 		if err != nil {
 			_ = tx.Rollback(context.Background())
 			return 0, err
@@ -67,6 +79,40 @@ func (dao *OrderDAO) CreateOrder(order models.Order) (int, error) {
 	}
 
 	return orderID, nil
+}
+
+func (dao *OrderDAO) ticketsAvailabilityCheck(t []models.Ticket) (bool, error) {
+	var id []*uint64
+
+	for _, v := range t {
+		id = append(id, v.ID)
+	}
+
+	rows, err := dao.DB.Query(context.Background(), ` 
+		SELECT is_available FROM tickets WHERE ID = ANY($1::INTEGER[])
+	`, id)
+	if err != nil {
+		return false, err
+	}
+	defer rows.Close()
+
+	for rows.Next() {
+		var isAvailable bool
+
+		err = rows.Scan(
+			&isAvailable,
+		)
+
+		if err != nil {
+			return false, err
+		}
+
+		if isAvailable == false {
+			return false, nil
+		}
+	}
+
+	return true, nil
 }
 
 func (dao *OrderDAO) GetOrder(id int) (models.Order, error) {
@@ -96,6 +142,7 @@ func (dao *OrderDAO) GetOrder(id int) (models.Order, error) {
 	if err != nil {
 		return models.Order{}, err
 	}
+	defer rows.Close()
 
 	var tickets []models.Ticket
 

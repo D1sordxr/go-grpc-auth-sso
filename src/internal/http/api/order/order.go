@@ -1,14 +1,14 @@
 package order
 
-import (
-	"aviasales/src/internal/http/api"
-	"github.com/gin-gonic/gin"
-)
-
-type HandlerOrder struct {
-	Server *api.Server
-	ctx    *gin.Context
-}
+//import (
+//	"aviasales/src/internal/http/api"
+//	"github.com/gin-gonic/gin"
+//)
+//
+//type HandlerOrder struct {
+//	Server *api.Server
+//	ctx    *gin.Context
+//}
 
 //
 //func (ho *HandlerOrder) CreateOrder(s *api.Server, c *gin.Context) {
