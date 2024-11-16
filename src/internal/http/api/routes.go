@@ -1,15 +1,19 @@
 package api
 
 func Setup(s *Server) {
-	api := s.Router.Group("/tickets")
+	tickets := s.Router.Group("/tickets")
 	{
-		api.GET("/ticket", s.GetTickets)
-		api.POST("/ticket", s.CreateTicket)
-		api.PATCH("/ticket/:id", s.UpdateTicket)
-		api.DELETE("/ticket/:id", s.DeleteTicket)
+		tickets.GET("/ticket", s.GetTickets)
+		tickets.POST("/ticket", s.CreateTicket)
+		tickets.PATCH("/ticket/:id", s.UpdateTicket)
+		tickets.DELETE("/ticket/:id", s.DeleteTicket)
 	}
-	order := s.Router.Group("/orders")
+
+	orders := s.Router.Group("/orders")
 	{
-		order.POST("/order", s.CreateOrder)
+		orders.POST("/order", s.CreateOrder)
+		// TODO: orders.GET("/order/:id", s.GetOrder)
+		// TODO: orders.POST("/order/:id ", s.PayOrder)
+		// TODO: orders.POST("/order/:id", s.DeleteOrder)
 	}
 }

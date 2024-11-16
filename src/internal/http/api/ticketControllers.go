@@ -6,12 +6,6 @@ import (
 	"strconv"
 )
 
-func (s *Server) CreateOrder(c *gin.Context) {
-	//order.ServerOrder.CreateOrder(s, c)
-	//order :=
-
-}
-
 func (s *Server) GetTickets(c *gin.Context) {
 	data, err := s.DBConn.GetTickets()
 	if err != nil {

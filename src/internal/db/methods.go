@@ -4,8 +4,16 @@ import (
 	"aviasales/src/internal/db/models"
 )
 
-func (s *Storage) CreateOrder(order models.Order) error {
-	return s.OrderDAO.CreateOrder(order)
+func (s *Storage) CreateOrder(order models.Order) (models.Order, error) {
+	id, err := s.OrderDAO.CreateOrder(order)
+	if err != nil {
+		return models.Order{}, err
+	}
+	return s.OrderDAO.GetOrder(id)
+}
+
+func (s *Storage) GetOrder(id int) (models.Order, error) {
+	return s.OrderDAO.GetOrder(id)
 }
 
 func (s *Storage) GetTickets() ([]models.Ticket, error) {

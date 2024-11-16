@@ -16,7 +16,7 @@ func NewOrderDAO(conn *pgx.Conn) *OrderDAO {
 	return &OrderDAO{DB: conn}
 }
 
-func (dao *OrderDAO) CreateOrder(order models.Order) error {
+func (dao *OrderDAO) CreateOrder(order models.Order) (int, error) {
 	clientID := uuid.New()
 	addressID := uuid.New()
 	serialNumber := func() int {
@@ -26,10 +26,10 @@ func (dao *OrderDAO) CreateOrder(order models.Order) error {
 
 	tx, err := dao.DB.Begin(context.Background())
 	if err != nil {
-		return err
+		return 0, err
 	}
 
-	var orderID int64
+	var orderID int
 	err = tx.QueryRow(context.Background(), `
 		INSERT INTO orders (
                 client_id, 
@@ -47,7 +47,7 @@ func (dao *OrderDAO) CreateOrder(order models.Order) error {
 
 	if err != nil {
 		_ = tx.Rollback(context.Background())
-		return err
+		return 0, err
 	}
 
 	for _, v := range order.Tickets {
@@ -58,13 +58,64 @@ func (dao *OrderDAO) CreateOrder(order models.Order) error {
 		`, orderID, v.ID)
 		if err != nil {
 			_ = tx.Rollback(context.Background())
-			return err
+			return 0, err
 		}
 	}
 
 	if err = tx.Commit(context.Background()); err != nil {
-		return err
+		return 0, err
 	}
 
-	return nil
+	return orderID, nil
+}
+
+func (dao *OrderDAO) GetOrder(id int) (models.Order, error) {
+	var order models.Order
+
+	rows, err := dao.DB.Query(context.Background(), `
+	SELECT 
+		o.id, 
+		o.client_id, 
+		o.address_id, 
+		o.order_status, 
+		o.payment_method, 
+		o.serial_number, 
+		o.closed, 
+		o.deleted,
+		t.id,
+		t.payment
+		FROM orders o
+		LEFT JOIN tickets t ON o.id = t.order_id 
+		WHERE o.id = $1
+	`, id)
+	if err != nil {
+		return models.Order{}, err
+	}
+
+	var tickets []models.Ticket
+
+	for rows.Next() {
+		var ticket models.Ticket
+
+		err = rows.Scan(
+			&order.ID,
+			&order.ClientID,
+			&order.AddressID,
+			&order.OrderStatus,
+			&order.PaymentMethod,
+			&order.SerialNumber,
+			&order.Closed,
+			&order.Deleted,
+			&ticket.ID,
+			&ticket.Payment,
+		)
+
+		if err != nil {
+			return models.Order{}, err
+		}
+		tickets = append(tickets, ticket)
+	}
+	order.Tickets = tickets
+
+	return order, nil
 }
