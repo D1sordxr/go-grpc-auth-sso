@@ -8,6 +8,8 @@ import (
 
 func (s *Server) CreateOrder(c *gin.Context) {
 	//order.ServerOrder.CreateOrder(s, c)
+	//order :=
+
 }
 
 func (s *Server) GetTickets(c *gin.Context) {

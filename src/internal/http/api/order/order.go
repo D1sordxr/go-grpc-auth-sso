@@ -9,11 +9,16 @@ import (
 
 // OrderController TODO: NewOrderController and NewTicketController
 type OrderController interface {
+	CreateOrder(c *gin.Context)
 }
 type orderController struct {
+	// todo
 }
 
-func CreateOrder(s *api.Server, c *gin.Context) {
+func NewOrderController() {
+
+}
+func (oc *orderController) CreateOrder(s *api.Server, c *gin.Context) {
 	var order models.Order
 	err := c.BindJSON(&order)
 	if err != nil {

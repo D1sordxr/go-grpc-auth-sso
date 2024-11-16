@@ -50,10 +50,12 @@ func (dao *OrderDAO) CreateOrder(order models.Order) error {
 		return err
 	}
 
-	for range order.Tickets {
+	for _, v := range order.Tickets {
 		_, err = tx.Exec(context.Background(), `
-			INSERT INTO tickets (order_id) VALUES ($1)
-		`, orderID)
+			UPDATE tickets 
+			SET order_id = $1
+			WHERE id = $2
+		`, orderID, v.ID)
 		if err != nil {
 			_ = tx.Rollback(context.Background())
 			return err
