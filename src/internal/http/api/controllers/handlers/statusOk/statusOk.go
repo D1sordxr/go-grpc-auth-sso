@@ -6,16 +6,16 @@ import (
 	"net/http"
 )
 
-type OkHandler struct {
+type Handler struct {
 	DBConn *db.Storage
 }
 
-func NewOkHandler(storage *db.Storage) *OkHandler {
-	return &OkHandler{
+func NewOkHandler(storage *db.Storage) *Handler {
+	return &Handler{
 		DBConn: storage,
 	}
 }
 
-func (oh *OkHandler) GetStatusOK(c *gin.Context) {
+func (h *Handler) GetStatusOK(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"status": "OK"})
 }

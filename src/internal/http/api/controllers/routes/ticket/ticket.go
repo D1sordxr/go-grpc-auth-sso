@@ -15,10 +15,10 @@ func NewTicketRoutes(rg *gin.RouterGroup, h *ticket.Handler) {
 		RouterGroup: rg,
 		Handler:     h,
 	}
-	routes.setupOrderRoutes()
+	routes.setupTicketRoutes()
 }
 
-func (r *Routes) setupOrderRoutes() {
+func (r *Routes) setupTicketRoutes() {
 	api := r.RouterGroup.Group("/tickets")
 	{
 		api.GET("/ticket", r.Handler.GetTickets)

@@ -23,5 +23,7 @@ func (r *Routes) setupOrderRoutes() {
 	{
 		api.POST("/order", r.Handler.CreateOrder)
 		api.GET("/order/:id", r.Handler.GetOrder)
+		// TODO: orders.POST("/order/:id ", s.PayOrder)
+		// TODO: orders.DELETE("/order/:id", s.DeleteOrder)
 	}
 }

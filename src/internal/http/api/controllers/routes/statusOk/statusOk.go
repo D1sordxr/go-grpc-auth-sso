@@ -7,10 +7,10 @@ import (
 
 type OkRoutes struct {
 	RouterGroup *gin.RouterGroup
-	Handler     *ok.OkHandler
+	Handler     *ok.Handler
 }
 
-func NewOkRoutes(rg *gin.RouterGroup, handler *ok.OkHandler) {
+func NewOkRoutes(rg *gin.RouterGroup, handler *ok.Handler) {
 	routes := &OkRoutes{
 		RouterGroup: rg,
 		Handler:     handler,
