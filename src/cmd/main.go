@@ -21,7 +21,6 @@ func main() {
 
 	router := gin.Default()
 	server := api.NewServer(storage, router, cfg)
-	api.Setup(server)
 
 	if err = server.Run(); err != nil {
 		log.Fatalf("Error starting server: %v", err)

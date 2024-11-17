@@ -35,7 +35,6 @@ func (s *Server) Run() error {
 	return nil
 }
 
-// TODO: move from ...Controllers modules to controllers package
 func (s *Server) registerRoutes() {
 	// Main path
 	api := s.Router.Group("/api")
