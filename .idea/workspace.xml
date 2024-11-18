@@ -5,25 +5,46 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a0c3205f-8cf3-46cb-ab4c-699636d8cd82" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/internal/infrastucture/db/config/config.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/internal/infrastucture/db/dao/order.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/internal/infrastucture/db/dao/tickets.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/internal/infrastucture/db/db.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/internal/infrastucture/db/methods.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/internal/infrastucture/db/migrations.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/internal/infrastucture/db/models/base.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/internal/infrastucture/db/models/order.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/internal/infrastucture/db/models/ticket.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/internal/presentation/api/config/config.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/internal/presentation/api/controllers/handlers/order/order.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/internal/presentation/api/controllers/handlers/statusOk/statusOk.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/internal/presentation/api/controllers/handlers/ticket/ticket.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/internal/presentation/api/controllers/routes/order/order.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/internal/presentation/api/controllers/routes/statusOk/statusOk.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/internal/presentation/api/controllers/routes/ticket/ticket.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/internal/presentation/api/server.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth/protos/go.mod" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth/protos/proto/sso/sso.proto" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth/sso/go.mod" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/internal/todo/infrastucture/config/config/config.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/internal/todo/infrastucture/config/load-config.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/internal/todo/presentation/api/engine/engine.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/src/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/src/go.sum" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmd/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/config/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/config/load-config.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/config/load-config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/db/dao/order.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/db/dao/order.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/db/dao/tickets.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/db/dao/tickets.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/db/db.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/db/db.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/db/methods.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/db/methods.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/http/api/controllers/handlers/order/order.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/http/api/controllers/handlers/order/order.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/http/api/controllers/handlers/statusOk/statusOk.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/http/api/controllers/handlers/statusOk/statusOk.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/http/api/controllers/handlers/ticket/ticket.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/http/api/controllers/handlers/ticket/ticket.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/http/api/controllers/routes/order/order.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/http/api/controllers/routes/order/order.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/http/api/controllers/routes/statusOk/statusOk.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/http/api/controllers/routes/statusOk/statusOk.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/http/api/controllers/routes/ticket/ticket.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/http/api/controllers/routes/ticket/ticket.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/http/api/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/http/api/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/infrastucture/db/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/todo/infrastucture/db/config/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/infrastucture/db/dao/order.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/todo/infrastucture/db/dao/order.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/infrastucture/db/dao/tickets.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/todo/infrastucture/db/dao/tickets.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/infrastucture/db/db.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/todo/infrastucture/db/db.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/infrastucture/db/methods.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/todo/infrastucture/db/methods.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/infrastucture/db/migrations.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/todo/infrastucture/db/migrations.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/infrastucture/db/models/base.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/todo/infrastucture/db/models/base.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/infrastucture/db/models/order.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/todo/infrastucture/db/models/order.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/infrastucture/db/models/ticket.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/todo/infrastucture/db/models/ticket.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/presentation/api/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/todo/presentation/api/config/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/presentation/api/controllers/handlers/order/order.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/todo/presentation/api/controllers/handlers/order/order.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/presentation/api/controllers/handlers/statusOk/statusOk.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/todo/presentation/api/controllers/handlers/statusOk/statusOk.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/presentation/api/controllers/handlers/ticket/ticket.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/todo/presentation/api/controllers/handlers/ticket/ticket.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/presentation/api/controllers/routes/order/order.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/todo/presentation/api/controllers/routes/order/order.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/presentation/api/controllers/routes/statusOk/statusOk.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/todo/presentation/api/controllers/routes/statusOk/statusOk.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/presentation/api/controllers/routes/ticket/ticket.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/todo/presentation/api/controllers/routes/ticket/ticket.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/presentation/api/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/todo/presentation/api/server.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +93,7 @@
     "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
     "git-widget-placeholder": "main",
     "go.import.settings.migrated": "true",
-    "last_opened_file_path": "C:/Users/Олег/go/src/aviasales/src/internal/application/order",
+    "last_opened_file_path": "C:/Users/Олег/go/src/aviasales/auth",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
@@ -86,16 +107,18 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Олег\go\src\aviasales\src\internal\application\order" />
+      <recent name="C:\Users\Олег\go\src\aviasales\auth" />
+      <recent name="C:\Users\Олег\go\src\aviasales\src\internal\todo" />
       <recent name="C:\Users\Олег\go\src\aviasales\src\internal\infrastucture" />
+      <recent name="C:\Users\Олег\go\src\aviasales\src\internal\application\order" />
       <recent name="C:\Users\Олег\go\src\aviasales\src\internal\presentation\api" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Олег\go\src\aviasales\src" />
+      <recent name="C:\Users\Олег\go\src\aviasales\src\internal\todo" />
+      <recent name="C:\Users\Олег\go\src\aviasales\src\internal\infrastucture\config\config" />
       <recent name="C:\Users\Олег\go\src\aviasales\src\internal\presentation" />
       <recent name="C:\Users\Олег\go\src\aviasales\src\internal\infrastucture" />
-      <recent name="C:\Users\Олег\go\src\aviasales\src\internal\http\api\controllers\routes" />
-      <recent name="C:\Users\Олег\go\src\aviasales\src\internal\http\api" />
-      <recent name="C:\Users\Олег\go\src\aviasales\src\internal\db\dao" />
     </key>
   </component>
   <component name="RunManager" selected="Go Build.go build main.go">
