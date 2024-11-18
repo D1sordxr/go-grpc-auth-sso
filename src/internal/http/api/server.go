@@ -10,19 +10,22 @@ import (
 	orderRoutes "src/internal/http/api/controllers/routes/order"
 	okRoutes "src/internal/http/api/controllers/routes/statusOk"
 	ticketRoutes "src/internal/http/api/controllers/routes/ticket"
+	"src/internal/logger"
 )
 
 type Server struct {
+	Config *config.Config
+	Logger *logger.Logger
 	DBConn *db.Storage
 	Router *gin.Engine
-	Config *config.Config
 }
 
-func NewServer(storage *db.Storage, router *gin.Engine, cfg *config.Config) *Server {
+func NewServer(storage *db.Storage, router *gin.Engine, cfg *config.Config, logger *logger.Logger) *Server {
 	return &Server{
+		Config: cfg,
+		Logger: logger,
 		DBConn: storage,
 		Router: router,
-		Config: cfg,
 	}
 }
 

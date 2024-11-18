@@ -24,7 +24,7 @@ func main() {
 	}
 
 	router := gin.Default()
-	server := api.NewServer(storage, router, cfg)
+	server := api.NewServer(storage, router, cfg, logger)
 
 	if err = server.Run(); err != nil {
 		logger.Log().Err(err).Msg("failed to start http server")
