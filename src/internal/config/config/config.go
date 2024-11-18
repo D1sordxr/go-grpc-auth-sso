@@ -2,8 +2,8 @@ package config
 
 import (
 	db "src/internal/db/config"
-	api "src/internal/http/config"
 	log "src/internal/logger/config"
+	api "src/internal/presentation/api/config"
 )
 
 type Config struct {

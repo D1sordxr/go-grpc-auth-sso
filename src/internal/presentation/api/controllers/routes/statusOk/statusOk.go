@@ -2,7 +2,7 @@ package statusOk
 
 import (
 	"github.com/gin-gonic/gin"
-	ok "src/internal/http/api/controllers/handlers/statusOk"
+	ok "src/internal/presentation/api/controllers/handlers/statusOk"
 )
 
 type OkRoutes struct {

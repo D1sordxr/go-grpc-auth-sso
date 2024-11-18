@@ -2,7 +2,7 @@ package ticket
 
 import (
 	"github.com/gin-gonic/gin"
-	"src/internal/http/api/controllers/handlers/ticket"
+	"src/internal/presentation/api/controllers/handlers/ticket"
 )
 
 type Routes struct {

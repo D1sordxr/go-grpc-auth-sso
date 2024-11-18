@@ -1,16 +1,16 @@
-package api
+package presentation
 
 import (
 	"github.com/gin-gonic/gin"
-	"src/internal/config"
+	"src/internal/config/config"
 	"src/internal/db"
-	orderHandler "src/internal/http/api/controllers/handlers/order"
-	okHandler "src/internal/http/api/controllers/handlers/statusOk"
-	ticketHandler "src/internal/http/api/controllers/handlers/ticket"
-	orderRoutes "src/internal/http/api/controllers/routes/order"
-	okRoutes "src/internal/http/api/controllers/routes/statusOk"
-	ticketRoutes "src/internal/http/api/controllers/routes/ticket"
 	"src/internal/logger"
+	orderHandler "src/internal/presentation/api/controllers/handlers/order"
+	okHandler "src/internal/presentation/api/controllers/handlers/statusOk"
+	ticketHandler "src/internal/presentation/api/controllers/handlers/ticket"
+	orderRoutes "src/internal/presentation/api/controllers/routes/order"
+	okRoutes "src/internal/presentation/api/controllers/routes/statusOk"
+	ticketRoutes "src/internal/presentation/api/controllers/routes/ticket"
 )
 
 type Server struct {

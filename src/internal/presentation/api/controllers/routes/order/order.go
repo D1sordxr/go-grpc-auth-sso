@@ -2,7 +2,7 @@ package order
 
 import (
 	"github.com/gin-gonic/gin"
-	"src/internal/http/api/controllers/handlers/order"
+	"src/internal/presentation/api/controllers/handlers/order"
 )
 
 type Routes struct {

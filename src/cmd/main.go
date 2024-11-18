@@ -1,12 +1,12 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
 	"log"
 	loadConfig "src/internal/config"
 	loadDB "src/internal/db"
-	"src/internal/http/api"
 	loadLogger "src/internal/logger"
+	loadServer "src/internal/presentation"
+	loadRouter "src/internal/presentation/api/engine"
 )
 
 func main() {
@@ -23,8 +23,9 @@ func main() {
 		logger.Log().Err(err).Msg("failed to connect DB")
 	}
 
-	router := gin.Default()
-	server := api.NewServer(storage, router, cfg, logger)
+	router := loadRouter.NewEngine(cfg)
+
+	server := loadServer.NewServer(storage, router.Gin, cfg, logger)
 
 	if err = server.Run(); err != nil {
 		logger.Log().Err(err).Msg("failed to start http server")
