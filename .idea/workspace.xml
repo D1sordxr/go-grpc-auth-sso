@@ -5,8 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a0c3205f-8cf3-46cb-ab4c-699636d8cd82" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/internal/infrastucture/db/config/config.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/internal/infrastucture/db/dao/order.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/internal/infrastucture/db/dao/tickets.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/internal/infrastucture/db/db.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/internal/infrastucture/db/methods.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/internal/infrastucture/db/migrations.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/internal/infrastucture/db/models/base.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/internal/infrastucture/db/models/order.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/internal/infrastucture/db/models/ticket.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/internal/presentation/api/config/config.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/internal/presentation/api/controllers/handlers/order/order.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/internal/presentation/api/controllers/handlers/statusOk/statusOk.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/internal/presentation/api/controllers/handlers/ticket/ticket.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/internal/presentation/api/controllers/routes/order/order.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/internal/presentation/api/controllers/routes/statusOk/statusOk.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/internal/presentation/api/controllers/routes/ticket/ticket.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/internal/presentation/api/server.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmd/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,36 +61,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
-    &quot;Go Build.go build main.go.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.automatic.dependencies.download&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Олег&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;go.vgo&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultGoTemplateProperty": "Go File",
+    "Go Build.go build main.go.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.automatic.dependencies.download": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "git-widget-placeholder": "main",
+    "go.import.settings.migrated": "true",
+    "last_opened_file_path": "C:/Users/Олег/go/src/aviasales/src/internal/application/order",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "go.vgo"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Олег\go\src\aviasales\src\internal\application\order" />
+      <recent name="C:\Users\Олег\go\src\aviasales\src\internal\infrastucture" />
+      <recent name="C:\Users\Олег\go\src\aviasales\src\internal\presentation\api" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Олег\go\src\aviasales\src\internal\presentation" />
+      <recent name="C:\Users\Олег\go\src\aviasales\src\internal\infrastucture" />
       <recent name="C:\Users\Олег\go\src\aviasales\src\internal\http\api\controllers\routes" />
       <recent name="C:\Users\Олег\go\src\aviasales\src\internal\http\api" />
       <recent name="C:\Users\Олег\go\src\aviasales\src\internal\db\dao" />
-      <recent name="C:\Users\Олег\go\src\aviasales\src" />
-      <recent name="C:\Users\Олег\go\src\aviasales\src\internal\db" />
     </key>
   </component>
   <component name="RunManager" selected="Go Build.go build main.go">

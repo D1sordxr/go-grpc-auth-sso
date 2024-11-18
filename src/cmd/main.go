@@ -3,7 +3,7 @@ package main
 import (
 	loadConfig "aviasales/src/internal/config"
 	"aviasales/src/internal/db"
-	"aviasales/src/internal/http/api"
+	api2 "aviasales/src/internal/presentation/api"
 	"github.com/gin-gonic/gin"
 	"log"
 )
@@ -20,7 +20,8 @@ func main() {
 	}
 
 	router := gin.Default()
-	server := api.NewServer(storage, router, cfg)
+	//server := api.NewServer(storage, router, cfg)
+	server := api2.NewServer(storage, router, cfg)
 
 	if err = server.Run(); err != nil {
 		log.Fatalf("Error starting server: %v", err)
