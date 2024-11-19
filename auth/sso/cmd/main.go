@@ -1,9 +1,10 @@
 package main
 
 import (
-	"fmt"
 	"log"
+	"log/slog"
 	loadConfig "sso/internal/infrastructure/config"
+	loadLogger "sso/internal/infrastructure/logger"
 )
 
 func main() {
@@ -11,9 +12,9 @@ func main() {
 	if err != nil {
 		log.Fatalf("failed init config: %v", err)
 	}
-	fmt.Println(cfg)
 
-	// TODO: init logger
+	logger := loadLogger.NewLogger(cfg)
+	logger.Info("starting application", slog.String("mode", cfg.AppConfig.Mode))
 
 	// TODO: init app
 
