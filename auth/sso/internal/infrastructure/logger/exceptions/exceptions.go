@@ -1,4 +1,4 @@
-package exeptions
+package exceptions
 
 import "log/slog"
 
