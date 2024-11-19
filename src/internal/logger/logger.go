@@ -1,10 +1,10 @@
 package logger
 
 import (
-	"github.com/D1sordxr/aviasales/src/internal/logger/config"
-	"github.com/rs/zerolog"
+	"github.com/D1sordxr/aviasales/src/internal/config/config"
+	"github.com/D1sordxr/aviasales/src/internal/logger/handlers/designed"
+	"log/slog"
 	"os"
-	"time"
 )
 
 const (
@@ -14,28 +14,26 @@ const (
 )
 
 type Logger struct {
-	zerolog.Logger
+	*slog.Logger
 }
 
-func NewLogger(cfg config.LoggerConfig) *Logger {
-	var logger zerolog.Logger
+func NewLogger(config *config.Config) *Logger {
+	var logger *slog.Logger
+	var handler slog.Handler
 
-	zerolog.TimeFieldFormat = time.RFC3339
-	zerolog.TimestampFunc = func() time.Time {
-		return time.Now().UTC()
-	}
-
-	switch cfg.Mode {
+	switch config.AppConfig.Mode {
 	case envLocal:
-		output := zerolog.ConsoleWriter{Out: os.Stdout, TimeFormat: time.RFC3339}
-		logger = zerolog.New(output).With().Timestamp().Logger().Level(zerolog.DebugLevel)
+		logger = designed.NewPrettySlog()
+		return &Logger{logger}
 	case envDev:
-		logger = zerolog.New(os.Stdout).With().Timestamp().Logger().Level(zerolog.DebugLevel)
+		handler = slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{Level: slog.LevelDebug})
 	case envProd:
-		logger = zerolog.New(os.Stdout).With().Timestamp().Logger().Level(zerolog.InfoLevel)
+		handler = slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{Level: slog.LevelInfo})
 	default:
-		logger = zerolog.New(os.Stdout).With().Timestamp().Logger().Level(zerolog.DebugLevel)
+		handler = slog.NewTextHandler(os.Stdout, &slog.HandlerOptions{Level: slog.LevelInfo})
 	}
 
-	return &Logger{Logger: logger}
+	logger = slog.New(handler)
+
+	return &Logger{logger}
 }

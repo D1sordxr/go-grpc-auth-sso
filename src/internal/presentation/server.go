@@ -3,7 +3,6 @@ package presentation
 import (
 	"github.com/D1sordxr/aviasales/src/internal/config/config"
 	"github.com/D1sordxr/aviasales/src/internal/db"
-	"github.com/D1sordxr/aviasales/src/internal/logger"
 	orderHandler "github.com/D1sordxr/aviasales/src/internal/presentation/api/controllers/handlers/order"
 	okHandler "github.com/D1sordxr/aviasales/src/internal/presentation/api/controllers/handlers/statusOk"
 	ticketHandler "github.com/D1sordxr/aviasales/src/internal/presentation/api/controllers/handlers/ticket"
@@ -11,16 +10,17 @@ import (
 	okRoutes "github.com/D1sordxr/aviasales/src/internal/presentation/api/controllers/routes/statusOk"
 	ticketRoutes "github.com/D1sordxr/aviasales/src/internal/presentation/api/controllers/routes/ticket"
 	"github.com/gin-gonic/gin"
+	"log/slog"
 )
 
 type Server struct {
 	Config *config.Config
-	Logger *logger.Logger
+	Logger *slog.Logger
 	DBConn *db.Storage
 	Router *gin.Engine
 }
 
-func NewServer(storage *db.Storage, router *gin.Engine, cfg *config.Config, logger *logger.Logger) *Server {
+func NewServer(storage *db.Storage, router *gin.Engine, cfg *config.Config, logger *slog.Logger) *Server {
 	return &Server{
 		Config: cfg,
 		Logger: logger,
