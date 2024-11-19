@@ -6,7 +6,7 @@ import (
 )
 
 type Engine struct {
-	Gin *gin.Engine
+	*gin.Engine
 }
 
 func NewEngine(config *config.Config) *Engine {

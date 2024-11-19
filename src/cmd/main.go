@@ -23,9 +23,11 @@ func main() {
 		logger.Log().Err(err).Msg("failed to connect DB")
 	}
 
-	router := loadRouter.NewEngine(cfg)
+	// TODO: useCase := loadUseCase.NewUseCase(storage.TicketDAO, storage.OrderDAO)
 
-	server := loadServer.NewServer(storage, router.Gin, cfg, logger)
+	router := loadRouter.NewEngine(cfg).Engine
+
+	server := loadServer.NewServer(storage, router, cfg, logger)
 
 	if err = server.Run(); err != nil {
 		logger.Log().Err(err).Msg("failed to start http server")
