@@ -16,3 +16,4 @@ db: # host=localhost user=postgres password=rootroot dbname=Aviasales port=5433 
 grpc:
   port: 44044
   timeout: 10h # no more than 5s if prod
+  token_ttl: 1h
