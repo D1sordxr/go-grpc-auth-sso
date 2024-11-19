@@ -1,10 +1,10 @@
 package order
 
 import (
+	"github.com/D1sordxr/aviasales/src/internal/db"
+	"github.com/D1sordxr/aviasales/src/internal/db/models"
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"src/internal/db"
-	"src/internal/db/models"
 	"strconv"
 )
 

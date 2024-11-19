@@ -1,7 +1,7 @@
 package db
 
 import (
-	"src/internal/db/models"
+	"github.com/D1sordxr/aviasales/src/internal/db/models"
 )
 
 func (s *Storage) CreateOrder(order models.Order) (models.Order, error) {

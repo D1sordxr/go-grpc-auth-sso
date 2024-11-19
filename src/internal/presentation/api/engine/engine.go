@@ -1,8 +1,8 @@
 package engine
 
 import (
+	"github.com/D1sordxr/aviasales/src/internal/config/config"
 	"github.com/gin-gonic/gin"
-	"src/internal/config/config"
 )
 
 type Engine struct {

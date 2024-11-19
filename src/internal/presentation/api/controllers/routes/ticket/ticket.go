@@ -1,8 +1,8 @@
 package ticket
 
 import (
+	"github.com/D1sordxr/aviasales/src/internal/presentation/api/controllers/handlers/ticket"
 	"github.com/gin-gonic/gin"
-	"src/internal/presentation/api/controllers/handlers/ticket"
 )
 
 type Routes struct {

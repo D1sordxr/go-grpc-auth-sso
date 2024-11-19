@@ -1,8 +1,8 @@
 package order
 
 import (
+	"github.com/D1sordxr/aviasales/src/internal/presentation/api/controllers/handlers/order"
 	"github.com/gin-gonic/gin"
-	"src/internal/presentation/api/controllers/handlers/order"
 )
 
 type Routes struct {

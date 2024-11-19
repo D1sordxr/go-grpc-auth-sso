@@ -2,9 +2,9 @@ package db
 
 import (
 	"context"
+	db "github.com/D1sordxr/aviasales/src/internal/db/config"
+	"github.com/D1sordxr/aviasales/src/internal/db/dao"
 	"github.com/jackc/pgx/v5"
-	db "src/internal/db/config"
-	"src/internal/db/dao"
 )
 
 type Storage struct {

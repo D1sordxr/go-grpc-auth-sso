@@ -1,16 +1,16 @@
 package presentation
 
 import (
+	"github.com/D1sordxr/aviasales/src/internal/config/config"
+	"github.com/D1sordxr/aviasales/src/internal/db"
+	"github.com/D1sordxr/aviasales/src/internal/logger"
+	orderHandler "github.com/D1sordxr/aviasales/src/internal/presentation/api/controllers/handlers/order"
+	okHandler "github.com/D1sordxr/aviasales/src/internal/presentation/api/controllers/handlers/statusOk"
+	ticketHandler "github.com/D1sordxr/aviasales/src/internal/presentation/api/controllers/handlers/ticket"
+	orderRoutes "github.com/D1sordxr/aviasales/src/internal/presentation/api/controllers/routes/order"
+	okRoutes "github.com/D1sordxr/aviasales/src/internal/presentation/api/controllers/routes/statusOk"
+	ticketRoutes "github.com/D1sordxr/aviasales/src/internal/presentation/api/controllers/routes/ticket"
 	"github.com/gin-gonic/gin"
-	"src/internal/config/config"
-	"src/internal/db"
-	"src/internal/logger"
-	orderHandler "src/internal/presentation/api/controllers/handlers/order"
-	okHandler "src/internal/presentation/api/controllers/handlers/statusOk"
-	ticketHandler "src/internal/presentation/api/controllers/handlers/ticket"
-	orderRoutes "src/internal/presentation/api/controllers/routes/order"
-	okRoutes "src/internal/presentation/api/controllers/routes/statusOk"
-	ticketRoutes "src/internal/presentation/api/controllers/routes/ticket"
 )
 
 type Server struct {

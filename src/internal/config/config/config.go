@@ -1,9 +1,9 @@
 package config
 
 import (
-	db "src/internal/db/config"
-	log "src/internal/logger/config"
-	api "src/internal/presentation/api/config"
+	db "github.com/D1sordxr/aviasales/src/internal/db/config"
+	log "github.com/D1sordxr/aviasales/src/internal/logger/config"
+	api "github.com/D1sordxr/aviasales/src/internal/presentation/api/config"
 )
 
 type Config struct {

@@ -1,12 +1,12 @@
 package main
 
 import (
+	loadConfig "github.com/D1sordxr/aviasales/src/internal/config"
+	loadDB "github.com/D1sordxr/aviasales/src/internal/db"
+	loadLogger "github.com/D1sordxr/aviasales/src/internal/logger"
+	loadServer "github.com/D1sordxr/aviasales/src/internal/presentation"
+	loadRouter "github.com/D1sordxr/aviasales/src/internal/presentation/api/engine"
 	"log"
-	loadConfig "src/internal/config"
-	loadDB "src/internal/db"
-	loadLogger "src/internal/logger"
-	loadServer "src/internal/presentation"
-	loadRouter "src/internal/presentation/api/engine"
 )
 
 func main() {

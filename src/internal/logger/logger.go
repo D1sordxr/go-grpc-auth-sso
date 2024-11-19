@@ -1,9 +1,9 @@
 package logger
 
 import (
+	"github.com/D1sordxr/aviasales/src/internal/logger/config"
 	"github.com/rs/zerolog"
 	"os"
-	"src/internal/logger/config"
 	"time"
 )
 

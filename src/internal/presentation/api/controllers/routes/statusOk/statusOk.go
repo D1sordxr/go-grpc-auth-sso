@@ -1,8 +1,8 @@
 package statusOk
 
 import (
+	ok "github.com/D1sordxr/aviasales/src/internal/presentation/api/controllers/handlers/statusOk"
 	"github.com/gin-gonic/gin"
-	ok "src/internal/presentation/api/controllers/handlers/statusOk"
 )
 
 type OkRoutes struct {

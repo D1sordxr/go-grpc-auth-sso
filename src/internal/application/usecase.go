@@ -1,8 +1,8 @@
 package application
 
 import (
-	order "src/internal/application/order/interfaces/dao"
-	ticket "src/internal/application/ticket/interfaces/dao"
+	order "github.com/D1sordxr/aviasales/src/internal/application/order/interfaces/dao"
+	ticket "github.com/D1sordxr/aviasales/src/internal/application/ticket/interfaces/dao"
 )
 
 type UseCase struct {

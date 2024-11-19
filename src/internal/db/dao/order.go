@@ -3,9 +3,9 @@ package dao
 import (
 	"context"
 	"errors"
+	"github.com/D1sordxr/aviasales/src/internal/db/models"
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5"
-	"src/internal/db/models"
 	"time"
 )
 

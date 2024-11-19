@@ -1,4 +1,4 @@
-module src
+module github.com/D1sordxr/aviasales/src
 
 go 1.23rc2
 

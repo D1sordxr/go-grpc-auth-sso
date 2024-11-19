@@ -3,8 +3,8 @@ package dao
 import (
 	"context"
 	"fmt"
+	"github.com/D1sordxr/aviasales/src/internal/db/models"
 	"github.com/jackc/pgx/v5"
-	"src/internal/db/models"
 	"time"
 )
 
