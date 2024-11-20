@@ -25,6 +25,6 @@ func (r *RoutesV1) setupRoutesV1() {
 	v1 := r.RouterGroup.Group("/v1")
 
 	// Status path
-	okHandlers := okHandler.NewOkHandler(r.UseCase)
+	okHandlers := okHandler.NewOkHandler()
 	okRoutes.NewOkRoutes(v1, okHandlers)
 }

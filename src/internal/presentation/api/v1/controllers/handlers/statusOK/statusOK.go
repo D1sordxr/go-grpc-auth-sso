@@ -1,19 +1,20 @@
 package statusOK
 
 import (
-	useCase "github.com/D1sordxr/aviasales/src/internal/application"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
 
-type Handler struct {
-	*useCase.UseCase
+type OkMessage struct {
+	Status string `json:"status"`
 }
 
-func NewOkHandler(useCase *useCase.UseCase) *Handler {
-	return &Handler{useCase}
+type Handler struct{}
+
+func NewOkHandler() *Handler {
+	return &Handler{}
 }
 
 func (h *Handler) GetStatusOK(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{"status": "OK"})
+	c.JSON(http.StatusOK, OkMessage{"OK"})
 }
