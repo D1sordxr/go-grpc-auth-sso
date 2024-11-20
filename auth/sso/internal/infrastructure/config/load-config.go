@@ -1,9 +1,9 @@
 package config
 
 import (
+	"github.com/D1sordxr/aviasales/auth/sso/internal/infrastructure/config/config"
 	"github.com/ilyakaznacheev/cleanenv"
 	"log"
-	"sso/internal/infrastructure/config/config"
 )
 
 const BasicConfigPath = "./configs/app/local.yaml"

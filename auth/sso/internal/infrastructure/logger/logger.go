@@ -1,10 +1,10 @@
 package logger
 
 import (
+	"github.com/D1sordxr/aviasales/auth/sso/internal/infrastructure/config/config"
+	"github.com/D1sordxr/aviasales/auth/sso/internal/infrastructure/logger/handlers/designed"
 	"log/slog"
 	"os"
-	"sso/internal/infrastructure/config/config"
-	"sso/internal/infrastructure/logger/handlers/designed"
 )
 
 const (

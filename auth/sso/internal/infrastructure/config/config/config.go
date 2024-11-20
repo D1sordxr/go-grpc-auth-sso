@@ -1,9 +1,9 @@
 package config
 
 import (
-	db "sso/internal/infrastructure/db/config"
-	logger "sso/internal/infrastructure/logger/config"
-	grpc "sso/internal/presentation/grpc/config"
+	db "github.com/D1sordxr/aviasales/auth/sso/internal/infrastructure/db/config"
+	logger "github.com/D1sordxr/aviasales/auth/sso/internal/infrastructure/logger/config"
+	grpc "github.com/D1sordxr/aviasales/auth/sso/internal/presentation/grpc/config"
 )
 
 type Config struct {

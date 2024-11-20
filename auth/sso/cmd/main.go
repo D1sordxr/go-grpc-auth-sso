@@ -1,10 +1,10 @@
 package main
 
 import (
+	loadConfig "github.com/D1sordxr/aviasales/auth/sso/internal/infrastructure/config"
+	loadLogger "github.com/D1sordxr/aviasales/auth/sso/internal/infrastructure/logger"
 	"log"
 	"log/slog"
-	loadConfig "sso/internal/infrastructure/config"
-	loadLogger "sso/internal/infrastructure/logger"
 )
 
 func main() {
@@ -15,6 +15,8 @@ func main() {
 
 	logger := loadLogger.NewLogger(cfg)
 	logger.Info("starting application", slog.String("mode", cfg.AppConfig.Mode))
+
+	// TODO: init storage
 
 	// TODO: init app
 
