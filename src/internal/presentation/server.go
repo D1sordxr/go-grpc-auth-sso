@@ -1,6 +1,7 @@
 package presentation
 
 import (
+	useCase "github.com/D1sordxr/aviasales/src/internal/application"
 	"github.com/D1sordxr/aviasales/src/internal/config/config"
 	"github.com/D1sordxr/aviasales/src/internal/db"
 	orderHandler "github.com/D1sordxr/aviasales/src/internal/presentation/api/controllers/handlers/order"
@@ -9,23 +10,26 @@ import (
 	orderRoutes "github.com/D1sordxr/aviasales/src/internal/presentation/api/controllers/routes/order"
 	okRoutes "github.com/D1sordxr/aviasales/src/internal/presentation/api/controllers/routes/statusOk"
 	ticketRoutes "github.com/D1sordxr/aviasales/src/internal/presentation/api/controllers/routes/ticket"
+	routesV1 "github.com/D1sordxr/aviasales/src/internal/presentation/api/v1"
 	"github.com/gin-gonic/gin"
 	"log/slog"
 )
 
 type Server struct {
-	Config *config.Config
-	Logger *slog.Logger
-	DBConn *db.Storage
-	Router *gin.Engine
+	Config  *config.Config
+	Logger  *slog.Logger
+	DBConn  *db.Storage
+	Router  *gin.Engine
+	UseCase *useCase.UseCase
 }
 
-func NewServer(storage *db.Storage, router *gin.Engine, cfg *config.Config, logger *slog.Logger) *Server {
+func NewServer(storage *db.Storage, router *gin.Engine, cfg *config.Config, logger *slog.Logger, useCase *useCase.UseCase) *Server {
 	return &Server{
-		Config: cfg,
-		Logger: logger,
-		DBConn: storage,
-		Router: router,
+		Config:  cfg,
+		Logger:  logger,
+		DBConn:  storage,
+		Router:  router,
+		UseCase: useCase,
 	}
 }
 
@@ -41,6 +45,9 @@ func (s *Server) Run() error {
 func (s *Server) registerRoutes() {
 	// Main path
 	api := s.Router.Group("/api")
+
+	// V1 path
+	routesV1.NewRoutesV1(api, s.UseCase)
 
 	// Status path
 	okHandlers := okHandler.NewOkHandler(s.DBConn)

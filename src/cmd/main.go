@@ -1,6 +1,7 @@
 package main
 
 import (
+	loadUseCase "github.com/D1sordxr/aviasales/src/internal/application"
 	loadConfig "github.com/D1sordxr/aviasales/src/internal/config"
 	loadDB "github.com/D1sordxr/aviasales/src/internal/db"
 	loadLogger "github.com/D1sordxr/aviasales/src/internal/logger"
@@ -24,11 +25,11 @@ func main() {
 		logger.Error("failed to connect DB", logError.Err(err))
 	}
 
-	// TODO: useCase := loadUseCase.NewUseCase(storage.TicketDAO, storage.OrderDAO)
+	useCase := loadUseCase.NewUseCase(storage.TicketDAO, storage.OrderDAO)
 
 	router := loadRouter.NewEngine(cfg).Engine
 
-	server := loadServer.NewServer(storage, router, cfg, logger)
+	server := loadServer.NewServer(storage, router, cfg, logger, useCase)
 
 	if err = server.Run(); err != nil {
 		logger.Error("failed to start http server", logError.Err(err))
