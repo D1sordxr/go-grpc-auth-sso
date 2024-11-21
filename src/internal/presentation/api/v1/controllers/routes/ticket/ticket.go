@@ -21,6 +21,7 @@ func NewTicketRoutes(rg *gin.RouterGroup, h *ticket.Handler) {
 func (r *Routes) setupTicketRoutes() {
 	tickets := r.RouterGroup.Group("/tickets")
 	{
-		tickets.GET("/ticket/", r.Handler.GetTickets)
+		tickets.GET("/ticket", r.Handler.GetTickets)
+		tickets.POST("/ticket", r.Handler.CreateTicket)
 	}
 }

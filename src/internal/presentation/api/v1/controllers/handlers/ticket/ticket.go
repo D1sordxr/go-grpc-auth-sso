@@ -35,10 +35,7 @@ func (h *Handler) GetTickets(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, ResponseData{
-		Message: "tickets data",
-		Data:    data,
-	})
+	c.JSON(http.StatusOK, ResponseData{Data: data})
 }
 
 func (h *Handler) CreateTicket(c *gin.Context) {
@@ -50,5 +47,12 @@ func (h *Handler) CreateTicket(c *gin.Context) {
 		return
 	}
 
-	// TODO: err = h.UseCase.CreateTicket(ticket) convert dto -> model
+	mTicket := ticket.ToModel()
+	err = h.UseCase.CreateTicket(mTicket)
+	if err != nil {
+		c.JSON(400, ResponseData{"error", err})
+		return
+	}
+
+	c.JSON(200, ResponseData{"Successfully created!", ticket})
 }
