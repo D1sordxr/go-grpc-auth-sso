@@ -5,6 +5,7 @@ import (
 	"github.com/D1sordxr/aviasales/src/internal/db/models"
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"strconv"
 )
 
 type Handler struct {
@@ -19,7 +20,7 @@ type ResponseData struct {
 type UseCase interface {
 	GetTickets() ([]models.Ticket, error)
 	CreateTicket(t models.Ticket) error
-	//UpdateTicket(t models.Ticket) error
+	UpdateTicket(t models.Ticket) error
 	//DeleteTicket(id string) error
 }
 
@@ -29,13 +30,13 @@ func NewTicketHandler(useCase UseCase) *Handler {
 }
 
 func (h *Handler) GetTickets(c *gin.Context) {
-	data, err := h.UseCase.GetTickets()
+	tickets, err := h.UseCase.GetTickets()
 	if err != nil {
 		c.JSON(400, ResponseData{"error", err})
 		return
 	}
 
-	c.JSON(http.StatusOK, ResponseData{Data: data})
+	c.JSON(http.StatusOK, ResponseData{Data: tickets})
 }
 
 func (h *Handler) CreateTicket(c *gin.Context) {
@@ -55,4 +56,32 @@ func (h *Handler) CreateTicket(c *gin.Context) {
 	}
 
 	c.JSON(200, ResponseData{"Successfully created!", ticket})
+}
+
+func (h *Handler) UpdateTicket(c *gin.Context) {
+	var ticket dto.Ticket
+	id := c.Param("id")
+
+	err := c.BindJSON(&ticket)
+	if err != nil {
+		c.JSON(400, ResponseData{"error", err})
+		return
+	}
+
+	pID, err := strconv.ParseUint(id, 10, 64)
+	if err != nil {
+		c.JSON(400, ResponseData{"error", err})
+		return
+	}
+
+	mTicket := ticket.ToModel()
+	mTicket.ID = &pID
+
+	err = h.UseCase.UpdateTicket(mTicket)
+	if err != nil {
+		c.JSON(400, ResponseData{"error", err})
+		return
+	}
+
+	c.JSON(200, ResponseData{"Successfully updated!", ticket})
 }

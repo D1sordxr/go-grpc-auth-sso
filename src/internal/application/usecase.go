@@ -25,3 +25,7 @@ func (uc *UseCase) GetTickets() ([]models.Ticket, error) {
 func (uc *UseCase) CreateTicket(t models.Ticket) error {
 	return uc.TicketDAO.CreateTicket(t)
 }
+
+func (uc *UseCase) UpdateTicket(t models.Ticket) error {
+	return uc.TicketDAO.UpdateTicket(t)
+}
