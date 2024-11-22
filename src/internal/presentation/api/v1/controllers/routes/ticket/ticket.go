@@ -22,6 +22,7 @@ func (r *Routes) setupTicketRoutes() {
 	tickets := r.RouterGroup.Group("/tickets")
 	{
 		tickets.GET("/ticket", r.Handler.GetTickets)
+		tickets.GET("/ticket/:id", r.Handler.GetTicketByID)
 		tickets.POST("/ticket", r.Handler.CreateTicket)
 		tickets.PATCH("/ticket/:id", r.Handler.UpdateTicket)
 		tickets.DELETE("/ticket/:id", r.Handler.DeleteTicket)

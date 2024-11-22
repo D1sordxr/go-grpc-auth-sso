@@ -13,3 +13,15 @@ func (t *Ticket) ToModel() models.Ticket {
 		ArrivalTime:   t.ArrivalTime,
 	}
 }
+
+func (t *Ticket) ModelToDTO(ticket models.Ticket) Ticket {
+	return Ticket{
+		OrderID:       ticket.OrderID,
+		IsAvailable:   ticket.IsAvailable,
+		PassengerName: ticket.PassengerName,
+		Destination:   ticket.Destination,
+		Payment:       ticket.Payment,
+		DispatchTime:  ticket.DispatchTime,
+		ArrivalTime:   ticket.ArrivalTime,
+	}
+}
