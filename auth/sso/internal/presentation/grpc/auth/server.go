@@ -1,10 +1,9 @@
 package auth
 
-//import "github.com/gin-gonic/gin"
-//
 //import (
+//	"context"
 //	ssov1 "github.com/D1sordxr/aviasales/auth/protos/gen/go/d1sx.sso.v1"
-//	"github.com/gin-gonic/gin"
+//	ssoV1 "github.com/D1sordxr/aviasales/auth/protos/gen/go/sso"
 //	"google.golang.org/grpc"
 //)
 //
@@ -16,3 +15,6 @@ package auth
 //	ssov1.RegisterAuthServer(gRPC, &ServerAPI{})
 //}
 //
+//func (s *ServerAPI) Login(ctx context.Context, req ssoV1.LoginRequest) (*ssoV1.LoginResponse, error) {
+//	panic("implement me")
+//}

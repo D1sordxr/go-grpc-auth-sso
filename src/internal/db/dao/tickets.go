@@ -61,6 +61,28 @@ func (dao *TicketDAO) GetTicketByID(id string) (models.Ticket, error) {
 	return ticket, nil
 }
 
+func (dao *TicketDAO) GetTicketByIDDTO(id string) (dto.Ticket, error) {
+	var ticket dto.Ticket
+
+	err := dao.DB.QueryRow(context.Background(), `
+		SELECT passenger_name, destination, payment, dispatch_time, arrival_time, is_available, order_id 
+		FROM tickets WHERE ID = $1
+	`, id).Scan(
+		&ticket.PassengerName,
+		&ticket.Destination,
+		&ticket.Payment,
+		&ticket.DispatchTime,
+		&ticket.ArrivalTime,
+		&ticket.IsAvailable,
+		&ticket.OrderID,
+	)
+	if err != nil {
+		return dto.Ticket{}, err
+	}
+
+	return ticket, nil
+}
+
 func (dao *TicketDAO) CreateTicket(t models.Ticket) error {
 	_, err := dao.DB.Exec(context.Background(), `
 		INSERT INTO tickets(passenger_name, destination, payment, dispatch_time, arrival_time, created_at) 

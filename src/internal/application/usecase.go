@@ -40,12 +40,16 @@ func (uc *UseCase) GetTicketByID(id string) (models.Ticket, error) {
 	return uc.TicketDAO.GetTicketByID(id)
 }
 
-func (uc *UseCase) CreateTicketDTO(t dto.Ticket) (dto.Ticket, error) {
-	return uc.TicketDAO.CreateTicketDTO(t)
+func (uc *UseCase) GetTicketByIDDTO(id string) (dto.Ticket, error) {
+	return uc.TicketDAO.GetTicketByIDDTO(id)
 }
 
 func (uc *UseCase) CreateTicket(t models.Ticket) error {
 	return uc.TicketDAO.CreateTicket(t)
+}
+
+func (uc *UseCase) CreateTicketDTO(t dto.Ticket) (dto.Ticket, error) {
+	return uc.TicketDAO.CreateTicketDTO(t)
 }
 
 func (uc *UseCase) UpdateTicket(t models.Ticket) error {

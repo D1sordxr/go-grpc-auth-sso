@@ -20,6 +20,7 @@ type ResponseData struct {
 type UseCase interface {
 	GetTickets() ([]models.Ticket, error)
 	GetTicketByID(id string) (models.Ticket, error)
+	GetTicketByIDDTO(id string) (dto.Ticket, error)
 	CreateTicketDTO(t dto.Ticket) (dto.Ticket, error)
 	CreateTicket(t models.Ticket) error
 	UpdateTicket(t models.Ticket) error
@@ -41,11 +42,10 @@ func (h *Handler) GetTickets(c *gin.Context) {
 	c.JSON(http.StatusOK, ResponseData{Data: tickets})
 }
 
-// GetTicketByID TODO: fix response data (model to dto)
 func (h *Handler) GetTicketByID(c *gin.Context) {
 	id := c.Param("id")
 
-	ticket, err := h.UseCase.GetTicketByID(id)
+	ticket, err := h.UseCase.GetTicketByIDDTO(id)
 	if err != nil {
 		c.JSON(400, ResponseData{"error", err})
 		return
