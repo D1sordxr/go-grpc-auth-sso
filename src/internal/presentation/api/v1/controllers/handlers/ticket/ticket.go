@@ -9,7 +9,7 @@ import (
 )
 
 type Handler struct {
-	UseCase UseCase
+	UseCase
 }
 
 type ResponseData struct {
@@ -20,6 +20,7 @@ type ResponseData struct {
 type UseCase interface {
 	GetTickets() ([]models.Ticket, error)
 	GetTicketByID(id string) (models.Ticket, error)
+	CreateTicketDTO(t dto.Ticket) (dto.Ticket, error)
 	CreateTicket(t models.Ticket) error
 	UpdateTicket(t models.Ticket) error
 	DeleteTicket(id string) error
@@ -53,7 +54,6 @@ func (h *Handler) GetTicketByID(c *gin.Context) {
 	c.JSON(200, ResponseData{Data: ticket})
 }
 
-// CreateTicket TODO: fix response data (getting by id after creating)
 func (h *Handler) CreateTicket(c *gin.Context) {
 	var ticket dto.Ticket
 
@@ -63,8 +63,7 @@ func (h *Handler) CreateTicket(c *gin.Context) {
 		return
 	}
 
-	mTicket := ticket.ToModel()
-	err = h.UseCase.CreateTicket(mTicket)
+	ticket, err = h.UseCase.CreateTicketDTO(ticket)
 	if err != nil {
 		c.JSON(400, ResponseData{"error", err})
 		return

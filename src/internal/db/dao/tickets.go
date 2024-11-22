@@ -3,6 +3,7 @@ package dao
 import (
 	"context"
 	"fmt"
+	"github.com/D1sordxr/aviasales/src/internal/application/ticket/dto"
 	"github.com/D1sordxr/aviasales/src/internal/db/models"
 	"github.com/jackc/pgx/v5"
 	"time"
@@ -71,6 +72,29 @@ func (dao *TicketDAO) CreateTicket(t models.Ticket) error {
 	}
 
 	return nil
+}
+
+func (dao *TicketDAO) CreateTicketDTO(t dto.Ticket) (dto.Ticket, error) {
+	var ticket dto.Ticket
+	err := dao.DB.QueryRow(context.Background(), `
+		INSERT INTO tickets(passenger_name, destination, payment, dispatch_time, arrival_time, created_at, order_id) 
+		VALUES ($1, $2, $3, $4, $5, NOW(), $6)
+		RETURNING passenger_name, destination, payment, dispatch_time, arrival_time, is_available, order_id`,
+		t.PassengerName, t.Destination, t.Payment, t.DispatchTime, t.ArrivalTime, nil,
+	).Scan(
+		&ticket.PassengerName,
+		&ticket.Destination,
+		&ticket.Payment,
+		&ticket.DispatchTime,
+		&ticket.ArrivalTime,
+		&ticket.IsAvailable,
+		&ticket.OrderID,
+	)
+	if err != nil {
+		return dto.Ticket{}, err
+	}
+
+	return ticket, nil
 }
 
 func (dao *TicketDAO) UpdateTicket(t models.Ticket) error {

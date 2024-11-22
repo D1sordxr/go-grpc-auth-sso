@@ -2,6 +2,7 @@ package application
 
 import (
 	order "github.com/D1sordxr/aviasales/src/internal/application/order/interfaces/dao"
+	"github.com/D1sordxr/aviasales/src/internal/application/ticket/dto"
 	ticket "github.com/D1sordxr/aviasales/src/internal/application/ticket/interfaces/dao"
 	"github.com/D1sordxr/aviasales/src/internal/db/models"
 )
@@ -37,6 +38,10 @@ func (uc *UseCase) GetTickets() ([]models.Ticket, error) {
 
 func (uc *UseCase) GetTicketByID(id string) (models.Ticket, error) {
 	return uc.TicketDAO.GetTicketByID(id)
+}
+
+func (uc *UseCase) CreateTicketDTO(t dto.Ticket) (dto.Ticket, error) {
+	return uc.TicketDAO.CreateTicketDTO(t)
 }
 
 func (uc *UseCase) CreateTicket(t models.Ticket) error {
