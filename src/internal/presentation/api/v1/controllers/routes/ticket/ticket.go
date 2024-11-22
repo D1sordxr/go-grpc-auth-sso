@@ -24,5 +24,6 @@ func (r *Routes) setupTicketRoutes() {
 		tickets.GET("/ticket", r.Handler.GetTickets)
 		tickets.POST("/ticket", r.Handler.CreateTicket)
 		tickets.PATCH("/ticket/:id", r.Handler.UpdateTicket)
+		tickets.DELETE("/ticket/:id", r.Handler.DeleteTicket)
 	}
 }

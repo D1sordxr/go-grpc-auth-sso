@@ -21,7 +21,7 @@ type UseCase interface {
 	GetTickets() ([]models.Ticket, error)
 	CreateTicket(t models.Ticket) error
 	UpdateTicket(t models.Ticket) error
-	//DeleteTicket(id string) error
+	DeleteTicket(id string) error
 }
 
 func NewTicketHandler(useCase UseCase) *Handler {
@@ -39,6 +39,7 @@ func (h *Handler) GetTickets(c *gin.Context) {
 	c.JSON(http.StatusOK, ResponseData{Data: tickets})
 }
 
+// CreateTicket TODO: fix response data (getting by id after creating)
 func (h *Handler) CreateTicket(c *gin.Context) {
 	var ticket dto.Ticket
 
@@ -58,6 +59,7 @@ func (h *Handler) CreateTicket(c *gin.Context) {
 	c.JSON(200, ResponseData{"Successfully created!", ticket})
 }
 
+// UpdateTicket TODO: fix response data (getting by id after updating)
 func (h *Handler) UpdateTicket(c *gin.Context) {
 	var ticket dto.Ticket
 	id := c.Param("id")
@@ -84,4 +86,17 @@ func (h *Handler) UpdateTicket(c *gin.Context) {
 	}
 
 	c.JSON(200, ResponseData{"Successfully updated!", ticket})
+}
+
+// DeleteTicket TODO: showing deleted data (getting by id then deleting)
+func (h *Handler) DeleteTicket(c *gin.Context) {
+	id := c.Param("id")
+
+	err := h.UseCase.DeleteTicket(id)
+	if err != nil {
+		c.JSON(400, ResponseData{"error", err})
+		return
+	}
+
+	c.JSON(200, ResponseData{Message: "Successfully deleted!"})
 }

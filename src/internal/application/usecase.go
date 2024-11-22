@@ -29,3 +29,7 @@ func (uc *UseCase) CreateTicket(t models.Ticket) error {
 func (uc *UseCase) UpdateTicket(t models.Ticket) error {
 	return uc.TicketDAO.UpdateTicket(t)
 }
+
+func (uc *UseCase) DeleteTicket(id string) error {
+	return uc.TicketDAO.DeleteTicket(id)
+}
