@@ -45,7 +45,7 @@ func (dao *TicketDAO) GetTicketsDTO() (dto.Tickets, error) {
 	tickets := make([]dto.Ticket, 0, 20)
 
 	rows, err := dao.DB.Query(context.Background(), `
-	SELECT passenger_name, destination, payment, dispatch_time, arrival_time, is_available, order_id FROM tickets
+	SELECT passenger_name, destination, payment, dispatch_time, arrival_time, is_available, order_id, id FROM tickets
 	 `)
 	if err != nil {
 		return dto.Tickets{}, err
@@ -61,6 +61,7 @@ func (dao *TicketDAO) GetTicketsDTO() (dto.Tickets, error) {
 			&ticket.ArrivalTime,
 			&ticket.IsAvailable,
 			&ticket.OrderID,
+			&ticket.ID,
 		)
 		if err != nil {
 			return dto.Tickets{}, err
@@ -97,7 +98,7 @@ func (dao *TicketDAO) GetTicketByIDDTO(id string) (dto.Ticket, error) {
 	var ticket dto.Ticket
 
 	err := dao.DB.QueryRow(context.Background(), `
-		SELECT passenger_name, destination, payment, dispatch_time, arrival_time, is_available, order_id 
+		SELECT passenger_name, destination, payment, dispatch_time, arrival_time, is_available, order_id, id 
 		FROM tickets WHERE ID = $1
 	`, id).Scan(
 		&ticket.PassengerName,
@@ -107,6 +108,7 @@ func (dao *TicketDAO) GetTicketByIDDTO(id string) (dto.Ticket, error) {
 		&ticket.ArrivalTime,
 		&ticket.IsAvailable,
 		&ticket.OrderID,
+		&ticket.ID,
 	)
 	if err != nil {
 		return dto.Ticket{}, err
@@ -133,7 +135,7 @@ func (dao *TicketDAO) CreateTicketDTO(t dto.Ticket) (dto.Ticket, error) {
 	err := dao.DB.QueryRow(context.Background(), `
 		INSERT INTO tickets(passenger_name, destination, payment, dispatch_time, arrival_time, created_at, order_id) 
 		VALUES ($1, $2, $3, $4, $5, NOW(), $6)
-		RETURNING passenger_name, destination, payment, dispatch_time, arrival_time, is_available, order_id`,
+		RETURNING passenger_name, destination, payment, dispatch_time, arrival_time, is_available, order_id, id`,
 		t.PassengerName, t.Destination, t.Payment, t.DispatchTime, t.ArrivalTime, nil,
 	).Scan(
 		&ticket.PassengerName,
@@ -143,6 +145,7 @@ func (dao *TicketDAO) CreateTicketDTO(t dto.Ticket) (dto.Ticket, error) {
 		&ticket.ArrivalTime,
 		&ticket.IsAvailable,
 		&ticket.OrderID,
+		&ticket.ID,
 	)
 	if err != nil {
 		return dto.Ticket{}, err
@@ -197,6 +200,11 @@ func (dao *TicketDAO) UpdateTicket(t models.Ticket) error {
 	}
 
 	return nil
+}
+
+func (dao *TicketDAO) UpdateTicketDTO(t dto.Ticket) (dto.Ticket, error) {
+	// TODO UpdateTicketDTO
+	return dto.Ticket{}, nil
 }
 
 func (dao *TicketDAO) DeleteTicket(id string) error {

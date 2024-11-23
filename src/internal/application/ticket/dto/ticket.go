@@ -5,6 +5,7 @@ import (
 )
 
 type Ticket struct {
+	ID            *int       `json:"id,omitempty"`
 	OrderID       *int       `json:"order_id,omitempty"`
 	IsAvailable   *bool      `json:"is_available,omitempty"`
 	PassengerName *string    `json:"passenger_name,omitempty"`
