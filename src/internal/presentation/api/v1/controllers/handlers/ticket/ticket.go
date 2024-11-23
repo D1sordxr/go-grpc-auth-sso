@@ -14,7 +14,6 @@ type Handler struct {
 type ResponseData struct {
 	Message string      `json:"message,omitempty"`
 	Data    interface{} `json:"data,omitempty"`
-	Error   error       `json:"error,omitempty"`
 }
 
 type UseCase interface {
@@ -38,7 +37,7 @@ func NewTicketHandler(useCase UseCase) *Handler {
 func (h *Handler) GetTickets(c *gin.Context) {
 	tickets, err := h.UseCase.GetTicketsDTO()
 	if err != nil {
-		c.JSON(400, ResponseData{Message: "error", Error: err})
+		c.JSON(400, ResponseData{Message: "error", Data: err.Error()})
 		return
 	}
 
@@ -50,7 +49,7 @@ func (h *Handler) GetTicketByID(c *gin.Context) {
 
 	ticket, err := h.UseCase.GetTicketByIDDTO(id)
 	if err != nil {
-		c.JSON(400, ResponseData{Message: "error", Error: err})
+		c.JSON(400, ResponseData{Message: "error", Data: err.Error()})
 		return
 	}
 
@@ -62,13 +61,13 @@ func (h *Handler) CreateTicket(c *gin.Context) {
 
 	err := c.BindJSON(&ticket)
 	if err != nil {
-		c.JSON(400, ResponseData{Message: "error", Error: err})
+		c.JSON(400, ResponseData{Message: "error", Data: err.Error()})
 		return
 	}
 
 	ticket, err = h.UseCase.CreateTicketDTO(ticket)
 	if err != nil {
-		c.JSON(400, ResponseData{Message: "error", Error: err})
+		c.JSON(400, ResponseData{Message: "error", Data: err.Error()})
 		return
 	}
 
@@ -84,13 +83,13 @@ func (h *Handler) UpdateTicket(c *gin.Context) {
 
 	err := c.BindJSON(&ticket)
 	if err != nil {
-		c.JSON(400, ResponseData{Message: "error", Error: err})
+		c.JSON(400, ResponseData{Message: "error", Data: err.Error()})
 		return
 	}
 
 	parsedID, err := strconv.ParseInt(id, 10, 32)
 	if err != nil {
-		c.JSON(400, ResponseData{Message: "error", Error: err})
+		c.JSON(400, ResponseData{Message: "error", Data: err.Error()})
 		return
 	}
 	ticket.ID = new(int)
@@ -98,7 +97,7 @@ func (h *Handler) UpdateTicket(c *gin.Context) {
 
 	ticket, err = h.UseCase.UpdateTicketDTO(ticket)
 	if err != nil {
-		c.JSON(400, ResponseData{Message: "error", Error: err})
+		c.JSON(400, ResponseData{Message: "error", Data: err.Error()})
 		return
 	}
 	c.JSON(200, ResponseData{
@@ -112,7 +111,7 @@ func (h *Handler) DeleteTicket(c *gin.Context) {
 
 	deletedTicket, err := h.UseCase.DeleteTicketDTO(id)
 	if err != nil {
-		c.JSON(400, ResponseData{Message: "error", Error: err})
+		c.JSON(400, ResponseData{Message: "error", Data: err.Error()})
 		return
 	}
 
