@@ -2,10 +2,11 @@ package ticket
 
 import (
 	"github.com/D1sordxr/aviasales/src/internal/application/ticket/dto"
-	"github.com/D1sordxr/aviasales/src/internal/db/models"
 	"github.com/gin-gonic/gin"
 	"strconv"
 )
+
+// TODO: move creating and updating logic to domain
 
 type Handler struct {
 	UseCase
@@ -17,15 +18,10 @@ type ResponseData struct {
 }
 
 type UseCase interface {
-	GetTickets() ([]models.Ticket, error)
 	GetTicketsDTO() (dto.Tickets, error)
-	GetTicketByID(id string) (models.Ticket, error)
 	GetTicketByIDDTO(id string) (dto.Ticket, error)
 	CreateTicketDTO(t dto.Ticket) (dto.Ticket, error)
-	CreateTicket(t models.Ticket) error
-	UpdateTicket(t models.Ticket) error
 	UpdateTicketDTO(ticket dto.Ticket) (dto.Ticket, error)
-	DeleteTicket(id string) error
 	DeleteTicketDTO(id string) (dto.Ticket, error)
 }
 

@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a0c3205f-8cf3-46cb-ab4c-699636d8cd82" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/internal/domain/ticket/entities/ticket.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/internal/domain/ticket/exceptions/ticket.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/internal/domain/ticket/vo/ticketPrice.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/internal/db/dao/tickets.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/db/dao/tickets.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/application/ticket/interfaces/dao/ticket.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/application/ticket/interfaces/dao/ticket.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/internal/application/usecase.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/application/usecase.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/internal/presentation/api/v1/controllers/handlers/ticket/ticket.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/internal/presentation/api/v1/controllers/handlers/ticket/ticket.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
