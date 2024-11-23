@@ -4,7 +4,6 @@ import (
 	"github.com/D1sordxr/aviasales/src/internal/application/ticket/dto"
 	"github.com/D1sordxr/aviasales/src/internal/db/models"
 	"github.com/gin-gonic/gin"
-	"net/http"
 	"strconv"
 )
 
@@ -39,7 +38,7 @@ func (h *Handler) GetTickets(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, ResponseData{Data: tickets})
+	c.JSON(200, ResponseData{Data: tickets})
 }
 
 func (h *Handler) GetTicketByID(c *gin.Context) {

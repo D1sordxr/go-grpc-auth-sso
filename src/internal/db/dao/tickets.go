@@ -40,6 +40,31 @@ func (dao *TicketDAO) GetTickets() ([]models.Ticket, error) {
 	return data, nil
 }
 
+func (dao *TicketDAO) GetTicketsDTO() (dto.Tickets, error) {
+	// TODO: tickets := make(dto.Tickets.Tickets, 0, 10)
+	var ticket dto.Ticket
+	_ = ticket
+	rows, err := dao.DB.Query(context.Background(), `
+	SELECT passenger_name, destination, payment, dispatch_time, arrival_time, is_available FROM tickets
+	 `)
+	if err != nil {
+		return dto.Tickets{}, err
+	}
+	defer rows.Close()
+	_ = make([]models.Ticket, 0, 10)
+	//for rows.Next() {
+	//	if err = rows.Scan(
+	//		&ticket.ID, &ticket.PassengerName, &ticket.Destination,
+	//		&ticket.Payment, &ticket.DispatchTime, &ticket.ArrivalTime,
+	//		&ticket.IsAvailable); err != nil {
+	//		return nil, err
+	//	}
+	//	data = append(data, ticket)
+	//}
+
+	return dto.Tickets{}, nil
+}
+
 func (dao *TicketDAO) GetTicketByID(id string) (models.Ticket, error) {
 	var ticket models.Ticket
 
