@@ -202,9 +202,50 @@ func (dao *TicketDAO) UpdateTicket(t models.Ticket) error {
 	return nil
 }
 
-func (dao *TicketDAO) UpdateTicketDTO(t dto.Ticket) (dto.Ticket, error) {
-	// TODO UpdateTicketDTO
-	return dto.Ticket{}, nil
+func (dao *TicketDAO) UpdateTicketDTO(ticket dto.Ticket) (dto.Ticket, error) {
+	query := `
+		UPDATE tickets
+		SET 
+			passenger_name = COALESCE(NULLIF($1::TEXT, ''), passenger_name),
+			destination = COALESCE(NULLIF($2::TEXT, ''), destination),
+			payment = COALESCE($3::INTEGER, payment),
+			dispatch_time = COALESCE($4::TIMESTAMP, dispatch_time),
+			arrival_time = COALESCE($5::TIMESTAMP, arrival_time),
+			updated_at = NOW()
+		WHERE id = $6::INTEGER
+		RETURNING passenger_name, destination, payment, dispatch_time, arrival_time, order_id, id
+	`
+
+	passengerName := ""
+	if ticket.PassengerName != nil {
+		passengerName = *ticket.PassengerName
+	}
+
+	destination := ""
+	if ticket.Destination != nil {
+		destination = *ticket.Destination
+	}
+
+	row := dao.DB.QueryRow(context.Background(), query,
+		passengerName, destination, ticket.Payment,
+		ticket.DispatchTime, ticket.ArrivalTime, ticket.ID,
+	)
+
+	var updatedTicket dto.Ticket
+	err := row.Scan(
+		&updatedTicket.PassengerName,
+		&updatedTicket.Destination,
+		&updatedTicket.Payment,
+		&updatedTicket.DispatchTime,
+		&updatedTicket.ArrivalTime,
+		&updatedTicket.OrderID,
+		&updatedTicket.ID,
+	)
+	if err != nil {
+		return dto.Ticket{}, err
+	}
+
+	return updatedTicket, nil
 }
 
 func (dao *TicketDAO) DeleteTicket(id string) error {

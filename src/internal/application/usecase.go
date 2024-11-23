@@ -48,6 +48,10 @@ func (uc *UseCase) UpdateTicket(t models.Ticket) error {
 	return uc.TicketDAO.UpdateTicket(t)
 }
 
+func (uc *UseCase) UpdateTicketDTO(t dto.Ticket) (dto.Ticket, error) {
+	return uc.TicketDAO.UpdateTicketDTO(t)
+}
+
 func (uc *UseCase) DeleteTicket(id string) error {
 	return uc.TicketDAO.DeleteTicket(id)
 }

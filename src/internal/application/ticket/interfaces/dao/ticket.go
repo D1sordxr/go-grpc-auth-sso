@@ -13,6 +13,7 @@ type TicketDAO interface {
 	CreateTicket(t models.Ticket) error
 	CreateTicketDTO(t dto.Ticket) (dto.Ticket, error)
 	UpdateTicket(t models.Ticket) error
+	UpdateTicketDTO(ticket dto.Ticket) (dto.Ticket, error)
 	DeleteTicket(id string) error
 	DeleteTicketDTO(id string) (dto.Ticket, error)
 }

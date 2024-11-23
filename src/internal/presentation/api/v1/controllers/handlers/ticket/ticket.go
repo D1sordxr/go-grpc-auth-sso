@@ -14,7 +14,7 @@ type Handler struct {
 type ResponseData struct {
 	Message string      `json:"message,omitempty"`
 	Data    interface{} `json:"data,omitempty"`
-	Error   interface{} `json:"error,omitempty"`
+	Error   error       `json:"error,omitempty"`
 }
 
 type UseCase interface {
@@ -25,6 +25,7 @@ type UseCase interface {
 	CreateTicketDTO(t dto.Ticket) (dto.Ticket, error)
 	CreateTicket(t models.Ticket) error
 	UpdateTicket(t models.Ticket) error
+	UpdateTicketDTO(ticket dto.Ticket) (dto.Ticket, error)
 	DeleteTicket(id string) error
 	DeleteTicketDTO(id string) (dto.Ticket, error)
 }
@@ -77,7 +78,6 @@ func (h *Handler) CreateTicket(c *gin.Context) {
 	})
 }
 
-// UpdateTicket TODO: fix response data (getting by id after updating)
 func (h *Handler) UpdateTicket(c *gin.Context) {
 	var ticket dto.Ticket
 	id := c.Param("id")
@@ -88,16 +88,15 @@ func (h *Handler) UpdateTicket(c *gin.Context) {
 		return
 	}
 
-	pID, err := strconv.ParseUint(id, 10, 64)
+	parsedID, err := strconv.ParseInt(id, 10, 32)
 	if err != nil {
 		c.JSON(400, ResponseData{Message: "error", Error: err})
 		return
 	}
+	ticket.ID = new(int)
+	*ticket.ID = int(parsedID)
 
-	mTicket := ticket.ToModel()
-	mTicket.ID = &pID
-
-	err = h.UseCase.UpdateTicket(mTicket)
+	ticket, err = h.UseCase.UpdateTicketDTO(ticket)
 	if err != nil {
 		c.JSON(400, ResponseData{Message: "error", Error: err})
 		return
