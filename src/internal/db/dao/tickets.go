@@ -41,28 +41,35 @@ func (dao *TicketDAO) GetTickets() ([]models.Ticket, error) {
 }
 
 func (dao *TicketDAO) GetTicketsDTO() (dto.Tickets, error) {
-	// TODO: tickets := make(dto.Tickets.Tickets, 0, 10)
 	var ticket dto.Ticket
-	_ = ticket
+	tickets := make([]dto.Ticket, 0, 20)
+
 	rows, err := dao.DB.Query(context.Background(), `
-	SELECT passenger_name, destination, payment, dispatch_time, arrival_time, is_available FROM tickets
+	SELECT passenger_name, destination, payment, dispatch_time, arrival_time, is_available, order_id FROM tickets
 	 `)
 	if err != nil {
 		return dto.Tickets{}, err
 	}
 	defer rows.Close()
-	_ = make([]models.Ticket, 0, 10)
-	//for rows.Next() {
-	//	if err = rows.Scan(
-	//		&ticket.ID, &ticket.PassengerName, &ticket.Destination,
-	//		&ticket.Payment, &ticket.DispatchTime, &ticket.ArrivalTime,
-	//		&ticket.IsAvailable); err != nil {
-	//		return nil, err
-	//	}
-	//	data = append(data, ticket)
-	//}
 
-	return dto.Tickets{}, nil
+	for rows.Next() {
+		err = rows.Scan(
+			&ticket.PassengerName,
+			&ticket.Destination,
+			&ticket.Payment,
+			&ticket.DispatchTime,
+			&ticket.ArrivalTime,
+			&ticket.IsAvailable,
+			&ticket.OrderID,
+		)
+		if err != nil {
+			return dto.Tickets{}, err
+		}
+
+		tickets = append(tickets, ticket)
+	}
+
+	return dto.Tickets{Tickets: tickets}, nil
 }
 
 func (dao *TicketDAO) GetTicketByID(id string) (models.Ticket, error) {
@@ -201,4 +208,20 @@ func (dao *TicketDAO) DeleteTicket(id string) error {
 	}
 
 	return nil
+}
+
+func (dao *TicketDAO) DeleteTicketDTO(id string) (dto.Ticket, error) {
+	ticket, err := dao.GetTicketByIDDTO(id)
+	if err != nil {
+		return dto.Ticket{}, err
+	}
+
+	_, err = dao.DB.Exec(context.Background(), `
+		DELETE FROM tickets WHERE ID = $1
+	`, id)
+	if err != nil {
+		return dto.Ticket{}, err
+	}
+
+	return ticket, err
 }

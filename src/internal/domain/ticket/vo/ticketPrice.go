@@ -6,10 +6,11 @@ import (
 )
 
 type TicketPrice struct {
-	Price int
+	Price uint64
 }
 
-func (t *TicketPrice) Create(price int) (TicketPrice, error) {
+// Create price is just a simple domain Value Object implementation and can be omitted here because of uint64 type
+func (t *TicketPrice) Create(price uint64) (TicketPrice, error) {
 	if price < 0 {
 		err := exceptions.Exception{
 			Error: errors.New("price can not be negative"),

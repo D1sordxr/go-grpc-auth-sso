@@ -21,19 +21,11 @@ func NewUseCase(ticketDAO ticket.TicketDAO, orderDAO order.OrderDAO) *UseCase {
 
 // GetTickets TODO: model to dto
 func (uc *UseCase) GetTickets() ([]models.Ticket, error) {
-	//var response dto.Tickets
-	//var dtoTicket dto.Ticket
-	//
-	//data, err := uc.TicketDAO.GetTickets()
-	//if err != nil {
-	//	return nil, err
-	//}
-	//
-	//for _, v := range data {
-	//	dtoTicket = dtoTicket.ModelToDTO(v)
-	//	response.Tickets = append(response.Tickets, dtoTicket)
-	//}
 	return uc.TicketDAO.GetTickets()
+}
+
+func (uc *UseCase) GetTicketsDTO() (dto.Tickets, error) {
+	return uc.TicketDAO.GetTicketsDTO()
 }
 
 func (uc *UseCase) GetTicketByID(id string) (models.Ticket, error) {
@@ -58,4 +50,8 @@ func (uc *UseCase) UpdateTicket(t models.Ticket) error {
 
 func (uc *UseCase) DeleteTicket(id string) error {
 	return uc.TicketDAO.DeleteTicket(id)
+}
+
+func (uc *UseCase) DeleteTicketDTO(id string) (dto.Ticket, error) {
+	return uc.TicketDAO.DeleteTicketDTO(id)
 }
