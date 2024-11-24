@@ -1,6 +1,9 @@
 package auth
 
+<<<<<<< HEAD
 //
+=======
+>>>>>>> aa8e5c9b674841ab039f6633e30e343e4516f205
 //import (
 //	"context"
 //	ssov1 "github.com/D1sordxr/aviasales/auth/protos/gen/go/d1sx.sso.v1"
