@@ -213,7 +213,7 @@ func (dao *TicketDAO) UpdateTicketDTO(ticket dto.Ticket) (dto.Ticket, error) {
 			arrival_time = COALESCE($5::TIMESTAMP, arrival_time),
 			updated_at = NOW()
 		WHERE id = $6::INTEGER
-		RETURNING passenger_name, destination, payment, dispatch_time, arrival_time, order_id, id
+		RETURNING passenger_name, destination, payment, dispatch_time, arrival_time, is_available, order_id, id
 	`
 
 	passengerName := ""
@@ -238,6 +238,7 @@ func (dao *TicketDAO) UpdateTicketDTO(ticket dto.Ticket) (dto.Ticket, error) {
 		&updatedTicket.Payment,
 		&updatedTicket.DispatchTime,
 		&updatedTicket.ArrivalTime,
+		&updatedTicket.IsAvailable,
 		&updatedTicket.OrderID,
 		&updatedTicket.ID,
 	)
@@ -260,14 +261,20 @@ func (dao *TicketDAO) DeleteTicket(id string) error {
 }
 
 func (dao *TicketDAO) DeleteTicketDTO(id string) (dto.Ticket, error) {
-	ticket, err := dao.GetTicketByIDDTO(id)
-	if err != nil {
-		return dto.Ticket{}, err
-	}
+	var ticket dto.Ticket
 
-	_, err = dao.DB.Exec(context.Background(), `
+	err := dao.DB.QueryRow(context.Background(), `
 		DELETE FROM tickets WHERE ID = $1
-	`, id)
+		RETURNING passenger_name, destination, payment, dispatch_time, arrival_time, is_available, order_id, id
+	`, id).Scan(
+		&ticket.PassengerName,
+		&ticket.Destination,
+		&ticket.Payment,
+		&ticket.DispatchTime,
+		&ticket.ArrivalTime,
+		&ticket.IsAvailable,
+		&ticket.OrderID,
+		&ticket.ID)
 	if err != nil {
 		return dto.Ticket{}, err
 	}
