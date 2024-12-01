@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a0c3205f-8cf3-46cb-ab4c-699636d8cd82" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -49,6 +49,7 @@
   &quot;keyToString&quot;: {
     &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
     &quot;Go Build.go build main.go.executor&quot;: &quot;Run&quot;,
+    &quot;Makefile Target.up-prod.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
@@ -84,7 +85,7 @@
       <recent name="C:\Users\Олег\go\src\aviasales\auth\protos\gen\go\sso" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Build.go build main.go">
+  <component name="RunManager" selected="Makefile Target.up-prod">
     <configuration name="go build load-config.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="aviasales" />
       <working_directory value="$PROJECT_DIR$" />
@@ -103,12 +104,20 @@
       <filePath value="$PROJECT_DIR$/src/cmd/main.go" />
       <method v="2" />
     </configuration>
+    <configuration name="up-prod" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
+      <makefile filename="$PROJECT_DIR$/CleanGolangOrderApp/Makefile" target="up-prod" workingDirectory="" arguments="">
+        <envs />
+      </makefile>
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Go Build.go build load-config.go" />
       <item itemvalue="Go Build.go build main.go" />
+      <item itemvalue="Makefile Target.up-prod" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Makefile Target.up-prod" />
         <item itemvalue="Go Build.go build main.go" />
         <item itemvalue="Go Build.go build main.go" />
         <item itemvalue="Go Build.go build main.go" />
