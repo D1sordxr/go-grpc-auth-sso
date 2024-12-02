@@ -6,15 +6,13 @@ import (
 )
 
 type App struct {
-	log        *slog.Logger
-	gRPCServer *grpc.Server
-	port       string
+	Logger     *slog.Logger
+	GRPCServer *grpc.Server
+	Port       string
 }
 
 func NewApp(log *slog.Logger, grpc *grpc.Server, port string) *App {
 	return &App{
-		log:        log,
-		gRPCServer: grpc,
-		port:       port,
+		GRPCServer: grpc.NewServer(),
 	}
 }

@@ -19,14 +19,14 @@ const (
 )
 
 type Server struct {
-	service services.UnimplementedAuthServer
-	server  *grpc.Server
+	Service services.UnimplementedAuthServer
+	Server  *grpc.Server
 }
 
-func NewGrpcServer(service services.UnimplementedAuthServer) *Server {
+func NewGrpcServer() *Server {
 	return &Server{
-		service: service,
-		server: grpc.NewServer(grpc.KeepaliveParams(keepalive.ServerParameters{
+		Service: services.UnimplementedAuthServer{},
+		Server: grpc.NewServer(grpc.KeepaliveParams(keepalive.ServerParameters{
 			MaxConnectionIdle: maxConnectionIdle * time.Minute,
 			Timeout:           gRPCTimeout * time.Second,
 			MaxConnectionAge:  maxConnectionAge * time.Minute,
@@ -35,22 +35,23 @@ func NewGrpcServer(service services.UnimplementedAuthServer) *Server {
 	}
 }
 
-func (g *Server) Run(port string) error {
-	s := g.server
-	services.RegisterAuthServer(s, g.service)
-	lis, err := net.Listen("tcp", fmt.Sprintf(":%s", port))
-
+func (s *Server) Run(port string) error {
+	grpcServer := s.Server
+	services.RegisterAuthServer(grpcServer, s.Service)
+	listener, err := net.Listen("tcp", fmt.Sprintf(":%s", port))
 	if err != nil {
-		log.Fatalf("Failed to listen: %v", err)
+		log.Fatalf("Failed to start TCP listener on port %s: %v", port, err)
 	}
-	reflection.Register(s)
-	g.server = s
-	err = s.Serve(lis)
+
+	reflection.Register(grpcServer)
+	s.Server = grpcServer
+	err = grpcServer.Serve(listener)
 	if err != nil {
 		return err
 	}
 	return nil
 }
-func (g *Server) Down() {
-	g.server.GracefulStop()
+
+func (s *Server) Down() {
+	s.Server.GracefulStop()
 }
