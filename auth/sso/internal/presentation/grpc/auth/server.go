@@ -16,13 +16,13 @@ const (
 )
 
 type Server struct {
-	//Service services.AuthServer
-	Service services.UnimplementedAuthServer
+	Service services.AuthServer
 	Server  *grpc.Server
 }
 
-func NewGRPCServer() *Server {
+func NewGRPCServer(authService services.AuthServer) *Server {
 	return &Server{
+		Service: authService,
 		Server: grpc.NewServer(grpc.KeepaliveParams(keepalive.ServerParameters{
 			MaxConnectionIdle: maxConnectionIdle * time.Minute,
 			Timeout:           gRPCTimeout * time.Second,

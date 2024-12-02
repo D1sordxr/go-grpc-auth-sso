@@ -19,7 +19,8 @@ func main() {
 	logger.Info("starting application", slog.String("mode", cfg.AppConfig.Mode))
 
 	// TODO: implement services
-	gRPCServer := loadGRPCServer.NewGRPCServer()
+	authService := loadGRPCServer.NewUserAuthService()
+	gRPCServer := loadGRPCServer.NewGRPCServer(authService)
 
 	app := loadApp.NewApp(cfg, logger.Logger, gRPCServer)
 	if err = app.Run(); err != nil {
