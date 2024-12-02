@@ -1,12 +1,10 @@
 package auth
 
 import (
-	"fmt"
 	services "github.com/D1sordxr/go-grpc-auth-sso/auth/sso/protobuf"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/keepalive"
 	"google.golang.org/grpc/reflection"
-	"net"
 	"time"
 )
 
@@ -34,24 +32,11 @@ func NewGRPCServer() *Server {
 	}
 }
 
-func (s *Server) Run(port int) error {
-	const operation = "gRPCServer.Run"
-
+func (s *Server) RegisterServer() error {
 	grpcServer := s.Server
 	services.RegisterAuthServer(grpcServer, s.Service)
 
-	listener, err := net.Listen("tcp", fmt.Sprintf(":%v", port))
-	if err != nil {
-		return fmt.Errorf("%s: %w", operation, err)
-	}
-
 	reflection.Register(grpcServer)
-
-	s.Server = grpcServer
-	err = grpcServer.Serve(listener)
-	if err != nil {
-		return fmt.Errorf("%s: %w", operation, err)
-	}
 	return nil
 }
 
