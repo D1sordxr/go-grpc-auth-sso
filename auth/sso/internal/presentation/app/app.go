@@ -1,9 +1,9 @@
 package app
 
 import (
+	"fmt"
 	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/infrastructure/config/config"
 	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/presentation/grpc/auth"
-	"log"
 	"log/slog"
 )
 
@@ -23,9 +23,10 @@ func NewApp(config *config.Config,
 	}
 }
 
-func (a *App) Run() {
+func (a *App) Run() error {
 	port := a.Config.GRPCConfig.Port
 	if err := a.GRPCServer.Run(port); err != nil {
-		log.Fatalf("Failed to start gRPC server")
+		return fmt.Errorf("failed to start gRPC server: %w", err)
 	}
+	return nil
 }

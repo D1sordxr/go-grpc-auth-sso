@@ -21,5 +21,7 @@ func main() {
 	gRPCServer := loadGRPCServer.NewGRPCServer()
 
 	app := loadApp.NewApp(cfg, logger.Logger, gRPCServer)
-	app.Run()
+	if err = app.Run(); err != nil {
+		logger.Error("Failed to run application", slog.String("error", err.Error()))
+	}
 }

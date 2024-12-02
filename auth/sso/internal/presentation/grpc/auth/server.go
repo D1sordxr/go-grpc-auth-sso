@@ -19,7 +19,8 @@ const (
 )
 
 type Server struct {
-	Service services.AuthServer
+	//Service services.AuthServer
+	Service services.UnimplementedAuthServer
 	Server  *grpc.Server
 }
 
