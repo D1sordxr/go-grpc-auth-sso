@@ -2,37 +2,30 @@ package app
 
 import (
 	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/infrastructure/config/config"
-	"google.golang.org/grpc"
+	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/presentation/grpc/auth"
 	"log"
+	"log/slog"
 )
 
 type App struct {
 	Config     *config.Config
-	GRPCServer *grpc.Server
+	Logger     *slog.Logger
+	GRPCServer *auth.Server
 }
 
 func NewApp(config *config.Config,
-	gRPC *gin.Engine) *App {
+	logger *slog.Logger,
+	gRPC *auth.Server) *App {
 	return &App{
-		Config:   config,
-		Storage:  storage,
-		Router:   router,
-		UseCases: useCases,
+		Config:     config,
+		Logger:     logger,
+		GRPCServer: gRPC,
 	}
 }
 
 func (a *App) Run() {
-	a.registerRoutes()
-	port := ":" + a.Config.API.Port
-	if err := a.Router.Run(port); err != nil {
-		log.Fatalf("error starting server: %v", err)
+	port := a.Config.GRPCConfig.Port
+	if err := a.GRPCServer.Run(port); err != nil {
+		log.Fatalf("Failed to start gRPC server")
 	}
-}
-
-func (a *App) registerRoutes() {
-	// Main path
-	api := a.Router.Group("/api")
-
-	// V1 path
-	routesV1.NewRoutesV1(api, a.UseCases)
 }

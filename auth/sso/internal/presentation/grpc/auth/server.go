@@ -34,12 +34,12 @@ func NewGRPCServer() *Server {
 	}
 }
 
-func (s *Server) Run(port string) error {
+func (s *Server) Run(port int) error {
 	grpcServer := s.Server
 	services.RegisterAuthServer(grpcServer, s.Service)
-	listener, err := net.Listen("tcp", fmt.Sprintf(":%s", port))
+	listener, err := net.Listen("tcp", fmt.Sprintf(":%v", port))
 	if err != nil {
-		log.Fatalf("Failed to start TCP listener on port %s: %v", port, err)
+		log.Fatalf("Failed to start TCP listener on port %v: %v", port, err)
 	}
 
 	reflection.Register(grpcServer)
