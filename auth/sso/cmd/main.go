@@ -18,6 +18,7 @@ func main() {
 	logger := loadLogger.NewLogger(cfg)
 	logger.Info("starting application", slog.String("mode", cfg.AppConfig.Mode))
 
+	// TODO: implement services
 	gRPCServer := loadGRPCServer.NewGRPCServer()
 
 	app := loadApp.NewApp(cfg, logger.Logger, gRPCServer)

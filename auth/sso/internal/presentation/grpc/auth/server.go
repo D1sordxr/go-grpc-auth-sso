@@ -6,7 +6,6 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/keepalive"
 	"google.golang.org/grpc/reflection"
-	"log"
 	"net"
 	"time"
 )
@@ -36,18 +35,22 @@ func NewGRPCServer() *Server {
 }
 
 func (s *Server) Run(port int) error {
+	const operation = "gRPCServer.Run"
+
 	grpcServer := s.Server
 	services.RegisterAuthServer(grpcServer, s.Service)
+
 	listener, err := net.Listen("tcp", fmt.Sprintf(":%v", port))
 	if err != nil {
-		log.Fatalf("Failed to start TCP listener on port %v: %v", port, err)
+		return fmt.Errorf("%s: %w", operation, err)
 	}
 
 	reflection.Register(grpcServer)
+
 	s.Server = grpcServer
 	err = grpcServer.Serve(listener)
 	if err != nil {
-		return err
+		return fmt.Errorf("%s: %w", operation, err)
 	}
 	return nil
 }
