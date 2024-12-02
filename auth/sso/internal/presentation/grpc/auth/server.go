@@ -1,24 +1,26 @@
 package auth
 
-<<<<<<< HEAD
-//
-=======
->>>>>>> aa8e5c9b674841ab039f6633e30e343e4516f205
-//import (
-//	"context"
-//	ssov1 "github.com/D1sordxr/aviasales/auth/protos/gen/go/d1sx.sso.v1"
-//	ssoV1 "github.com/D1sordxr/aviasales/auth/protos/gen/go/sso"
-//	"google.golang.org/grpc"
-//)
-//
-//type ServerAPI struct {
-//	ssov1.UnimplementedAuthServer
-//}
-//
-//func Register(gRPC *grpc.Server) {
-//	ssov1.RegisterAuthServer(gRPC, &ServerAPI{})
-//}
-//
-//func (s *ServerAPI) Login(ctx context.Context, req ssoV1.LoginRequest) (*ssoV1.LoginResponse, error) {
-//	panic("implement me")
-//}
+import (
+	"context"
+	services "github.com/D1sordxr/aviasales/auth/sso/protobuf"
+)
+
+type ServerAPI struct {
+	services.UnimplementedAuthServer
+	auth Auth
+}
+
+type Auth interface {
+	Login(ctx context.Context, email string, password string, appID int) (token string, err error)
+	RegisterNewUser(ctx context.Context, email string)
+}
+
+func (s *ServerAPI) Login(ctx context.Context, lr *services.LoginRequest) (*services.LoginResponse, error) {
+	// TODO:
+	return nil, nil
+}
+
+func (s *ServerAPI) Register(ctx context.Context, rr *services.RegisterRequest) (*services.RegisterResponse, error) {
+	// TODO
+	return nil, nil
+}

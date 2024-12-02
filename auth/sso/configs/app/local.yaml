@@ -17,3 +17,4 @@ grpc:
   port: 44044
   timeout: 10h # no more than 5s if prod
   token_ttl: 1h
+

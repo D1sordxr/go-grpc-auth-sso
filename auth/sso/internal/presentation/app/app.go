@@ -12,8 +12,6 @@ type App struct {
 }
 
 func NewApp(log *slog.Logger, grpc *grpc.Server, port string) *App {
-	//gRPCServer :=
-
 	return &App{
 		log:        log,
 		gRPCServer: grpc,
