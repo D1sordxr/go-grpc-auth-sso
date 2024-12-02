@@ -26,16 +26,17 @@ type Server struct {
 func NewGrpcServer(service services.UnimplementedAuthServer) *Server {
 	return &Server{
 		service: service,
+		server: grpc.NewServer(grpc.KeepaliveParams(keepalive.ServerParameters{
+			MaxConnectionIdle: maxConnectionIdle * time.Minute,
+			Timeout:           gRPCTimeout * time.Second,
+			MaxConnectionAge:  maxConnectionAge * time.Minute,
+			Time:              gRPCTime * time.Minute,
+		})),
 	}
 }
 
 func (g *Server) Run(port string) error {
-	s := grpc.NewServer(grpc.KeepaliveParams(keepalive.ServerParameters{
-		MaxConnectionIdle: maxConnectionIdle * time.Minute,
-		Timeout:           gRPCTimeout * time.Second,
-		MaxConnectionAge:  maxConnectionAge * time.Minute,
-		Time:              gRPCTime * time.Minute,
-	}))
+	s := g.server
 	services.RegisterAuthServer(s, g.service)
 	lis, err := net.Listen("tcp", fmt.Sprintf(":%s", port))
 
