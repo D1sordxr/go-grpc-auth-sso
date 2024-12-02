@@ -1,26 +1,55 @@
 package auth
 
 import (
-	"context"
-	services "github.com/D1sordxr/aviasales/auth/sso/protobuf"
+	"fmt"
+	services "github.com/D1sordxr/go-grpc-auth-sso/auth/sso/protobuf"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/keepalive"
+	"google.golang.org/grpc/reflection"
+	"log"
+	"net"
+	"time"
 )
 
-type ServerAPI struct {
-	services.UnimplementedAuthServer
-	auth Auth
+const (
+	maxConnectionIdle = 5
+	gRPCTimeout       = 15
+	maxConnectionAge  = 5
+	gRPCTime          = 10
+)
+
+type Server struct {
+	service services.UnimplementedAuthServer
+	server  *grpc.Server
 }
 
-type Auth interface {
-	Login(ctx context.Context, email string, password string, appID int) (token string, err error)
-	RegisterNewUser(ctx context.Context, email string)
+func NewGrpcServer(service services.UnimplementedAuthServer) *Server {
+	return &Server{
+		service: service,
+	}
 }
 
-func (s *ServerAPI) Login(ctx context.Context, lr *services.LoginRequest) (*services.LoginResponse, error) {
-	// TODO:
-	return nil, nil
-}
+func (g *Server) Run(port string) error {
+	s := grpc.NewServer(grpc.KeepaliveParams(keepalive.ServerParameters{
+		MaxConnectionIdle: maxConnectionIdle * time.Minute,
+		Timeout:           gRPCTimeout * time.Second,
+		MaxConnectionAge:  maxConnectionAge * time.Minute,
+		Time:              gRPCTime * time.Minute,
+	}))
+	services.RegisterAuthServer(s, g.service)
+	lis, err := net.Listen("tcp", fmt.Sprintf(":%s", port))
 
-func (s *ServerAPI) Register(ctx context.Context, rr *services.RegisterRequest) (*services.RegisterResponse, error) {
-	// TODO
-	return nil, nil
+	if err != nil {
+		log.Fatalf("Failed to listen: %v", err)
+	}
+	reflection.Register(s)
+	g.server = s
+	err = s.Serve(lis)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+func (g *Server) Down() {
+	g.server.GracefulStop()
 }

@@ -1,4 +1,4 @@
-module github.com/D1sordxr/aviasales/auth/sso
+module github.com/D1sordxr/go-grpc-auth-sso/auth/sso
 
 go 1.23rc2
 

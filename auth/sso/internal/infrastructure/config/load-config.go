@@ -1,7 +1,7 @@
 package config
 
 import (
-	"github.com/D1sordxr/aviasales/auth/sso/internal/infrastructure/config/config"
+	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/infrastructure/config/config"
 	"github.com/ilyakaznacheev/cleanenv"
 	"log"
 )
