@@ -7,6 +7,9 @@ import (
 	loadGRPCServer "github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/presentation/grpc/auth"
 	"log"
 	"log/slog"
+	"os"
+	"os/signal"
+	"syscall"
 )
 
 func main() {
@@ -23,7 +26,18 @@ func main() {
 	gRPCServer := loadGRPCServer.NewGRPCServer(authService)
 
 	app := loadApp.NewApp(cfg, logger.Logger, gRPCServer)
-	if err = app.Run(); err != nil {
-		logger.Error("Failed to run application", slog.String("error", err.Error()))
-	}
+	go func() {
+		if err = app.Run(); err != nil {
+			logger.Error("Failed to run application", slog.String("error", err.Error()))
+		}
+	}()
+
+	// Graceful stop realization
+	stop := make(chan os.Signal, 1)
+	signal.Notify(stop, syscall.SIGTERM, syscall.SIGINT)
+
+	<-stop
+
+	app.GRPCServer.Down()
+	logger.Info("Gracefully stopped")
 }
