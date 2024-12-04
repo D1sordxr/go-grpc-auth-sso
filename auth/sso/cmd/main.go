@@ -21,22 +21,30 @@ func main() {
 	logger := loadLogger.NewLogger(cfg)
 	logger.Info("starting application", slog.String("mode", cfg.AppConfig.Mode))
 
+	// TODO: database
+
 	// TODO: implement services
 	authService := loadGRPCServer.NewUserAuthService()
 	gRPCServer := loadGRPCServer.NewGRPCServer(authService)
 
 	app := loadApp.NewApp(cfg, logger.Logger, gRPCServer)
+
+	errorsChannel := make(chan error, 1)
 	go func() {
 		if err = app.Run(); err != nil {
-			logger.Error("Failed to run application", slog.String("error", err.Error()))
+			errorsChannel <- err
 		}
 	}()
 
-	// Graceful stop realization
 	stop := make(chan os.Signal, 1)
 	signal.Notify(stop, syscall.SIGTERM, syscall.SIGINT)
 
-	<-stop
+	select {
+	case <-stop:
+		logger.Info("Stopping application...", slog.String("signal", "stop"))
+	case err = <-errorsChannel:
+		logger.Error("Application encountered an error", slog.String("error", err.Error()))
+	}
 
 	app.GRPCServer.Down()
 	logger.Info("Gracefully stopped")
