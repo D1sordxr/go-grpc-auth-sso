@@ -20,7 +20,7 @@ func NewUserAuthService() *UserAuthService {
 }
 
 func (s *UserAuthService) Register(ctx context.Context, req *services.RegisterRequest) (*services.RegisterResponse, error) {
-	// TODO: Реализовать логику регистрации
+	// TODO: Реализовать регистрацию
 	return &services.RegisterResponse{}, nil
 }
 
