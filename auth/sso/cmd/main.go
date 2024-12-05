@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application/commands"
 	loadConfig "github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/infrastructure/config"
 	loadLogger "github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/infrastructure/logger"
 	loadApp "github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/presentation/app"
@@ -23,8 +24,8 @@ func main() {
 
 	// TODO: database
 
-	// TODO: implement services
-	authService := loadGRPCServer.NewUserAuthService()
+	userCommands := commands.NewUserCommands() // TODO: logic
+	authService := loadGRPCServer.NewUserAuthService(userCommands)
 	gRPCServer := loadGRPCServer.NewGRPCServer(authService)
 
 	app := loadApp.NewApp(cfg, logger.Logger, gRPCServer)

@@ -12,3 +12,7 @@ type LoginDTO struct {
 	Password string `json:"password"`
 	AppID    int32  `json:"app_id"`
 }
+
+type IsAdminDTO struct {
+	UserID int32 `json:"user_id"`
+}
