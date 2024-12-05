@@ -8,6 +8,7 @@ type RegisterDTO struct {
 }
 
 type LoginDTO struct {
+	Token    string `json:"token"`
 	Email    string `json:"email"`
 	Password string `json:"password"`
 	AppID    int32  `json:"app_id"`

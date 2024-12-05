@@ -45,18 +45,14 @@ func (s *UserAuthService) Login(ctx context.Context, req *services.LoginRequest)
 		AppID:    req.GetAppId(),
 	}
 
-	if dto.Email == "" {
-		return nil, status.Error(codes.InvalidArgument, "email can not be empty")
-	}
-	if dto.Password == "" {
-		return nil, status.Error(codes.InvalidArgument, "password can not be empty")
-	}
-	if dto.AppID == emptyValue {
-		return nil, status.Error(codes.InvalidArgument, "app ID is required")
-	}
-
 	response, err := s.auth.Login(ctx, dto)
+	if err != nil {
+		return nil, status.Error(codes.Aborted, "application error happened")
+	}
 
+	_ = response
+	//token := response.Token
+	// TODO: token has to be string
 	return &services.LoginResponse{}, nil
 
 }

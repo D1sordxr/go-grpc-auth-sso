@@ -1,6 +1,10 @@
 package commands
 
-import "context"
+import (
+	"context"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
+)
 
 type Auth interface {
 	Register(ctx context.Context, dto RegisterDTO) (RegisterDTO, error)
@@ -17,9 +21,18 @@ func NewUserCommands() *UserCommands {
 }
 
 func (uc *UserCommands) Register(ctx context.Context, dto RegisterDTO) (RegisterDTO, error) {
-	_, _ = ctx, dto
+	if dto.Email == "" {
+		return RegisterDTO{}, status.Error(codes.InvalidArgument, "email can not be empty")
+	}
+	if dto.Password == "" {
+		return RegisterDTO{}, status.Error(codes.InvalidArgument, "password can not be empty")
+	}
+
+	_ = ctx
+
 	return RegisterDTO{}, nil
 }
+
 func (uc *UserCommands) Login(ctx context.Context, dto LoginDTO) (LoginDTO, error) {
 	_, _ = ctx, dto
 	return LoginDTO{}, nil
