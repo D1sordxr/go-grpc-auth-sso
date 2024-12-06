@@ -26,7 +26,7 @@ func main() {
 	database := loadDatabase.NewConnection(&cfg.DBConfig)
 	userDAO := loadDatabase.NewUserDAO(database)
 
-	userCommands := loadUserCommands.NewUserCommands(userDAO) // TODO: logic
+	userCommands := loadUserCommands.NewUserCommands(userDAO)
 	authService := loadGRPCServer.NewUserAuthService(userCommands)
 	gRPCServer := loadGRPCServer.NewGRPCServer(authService)
 
