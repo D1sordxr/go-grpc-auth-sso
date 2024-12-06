@@ -24,9 +24,10 @@ func main() {
 	logger.Info("starting application", slog.String("mode", cfg.AppConfig.Mode))
 
 	database := loadDatabase.NewConnection(&cfg.DBConfig)
+	uowManager := loadDatabase.NewUoWManager(database)
 	userDAO := loadDatabase.NewUserDAO(database)
 
-	userCommands := loadUserCommands.NewUserCommands(userDAO)
+	userCommands := loadUserCommands.NewUserCommands(userDAO, uowManager)
 	authService := loadGRPCServer.NewUserAuthService(userCommands)
 	gRPCServer := loadGRPCServer.NewGRPCServer(authService)
 

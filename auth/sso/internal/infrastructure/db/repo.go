@@ -17,20 +17,23 @@ func NewUserDAO(conn Connection) *UserDAO {
 	return &UserDAO{Conn: conn}
 }
 
-func (dao *UserDAO) Register(ctx context.Context, entity entity.User) (commands.RegisterDTO, error) {
+func (dao *UserDAO) Register(ctx context.Context, tx interface{}, entity entity.User) (commands.RegisterDTO, error) {
+	user := ConvertEntityToModel(entity)
 
-	var user commands.RegisterDTO
-	err := dao.Conn.QueryRow(ctx, `
-		INSERT INTO users (email, password, created_at) VALUES ($1, 2, NOW())
-	`).Scan(
+	conn := tx.(pgx.Tx)
+	query := `INSERT INTO users (email, password, created_at)
+					VALUES ($1, $2, NOW())
+				RETURNING id`
+
+	row := conn.QueryRow(ctx, query, user.Email, user.Password)
+	err := row.Scan(
 		&user.UserID,
-		&user.Email,
-		&user.Password,
 	)
 	if err != nil {
 		return commands.RegisterDTO{}, err
 	}
-	return commands.RegisterDTO{}, nil
+
+	return commands.RegisterDTO{UserID: user.UserID}, nil
 }
 
 func (dao *UserDAO) Exists(ctx context.Context, email string) error {

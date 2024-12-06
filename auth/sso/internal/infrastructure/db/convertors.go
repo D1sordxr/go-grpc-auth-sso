@@ -1,11 +1,12 @@
 package db
 
-import "github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application/commands"
+import (
+	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/domain/entity"
+)
 
-func ConvertRegisterDTOToUserModel(dto commands.RegisterDTO) User {
+func ConvertEntityToModel(user entity.User) User {
 	return User{
-		Email:  dto.Email,
-		UserID: dto.UserID,
-		// Password:   dto.Password,
+		Email:    user.Email.Email,
+		Password: user.Password.HashedPassword,
 	}
 }

@@ -14,11 +14,12 @@ type Auth interface {
 }
 
 type UserCommands struct {
-	UserDAO persistence.UserDAO
+	UserDAO    UserDAO
+	UoWManager persistence.UoWManager
 }
 
-func NewUserCommands(dao persistence.UserDAO) *UserCommands {
-	return &UserCommands{UserDAO: dao}
+func NewUserCommands(dao UserDAO, uow persistence.UoWManager) *UserCommands {
+	return &UserCommands{UserDAO: dao, UoWManager: uow}
 }
 
 // TODO: add user_id as UUID and make new value object
@@ -32,19 +33,38 @@ func (uc *UserCommands) Register(ctx context.Context, dto RegisterDTO) (Register
 	if err != nil {
 		return RegisterDTO{}, err
 	}
-	user := entity.NewUser(email, password)
-
 	err = uc.UserDAO.Exists(ctx, email.Email)
 	if err != nil {
 		return RegisterDTO{}, err
 	}
 
-	response, err := uc.UserDAO.Register(ctx, user)
+	user := entity.NewUser(email, password)
+	uow := uc.UoWManager.GetUoW()
+
+	tx, err := uow.Begin(ctx)
 	if err != nil {
 		return RegisterDTO{}, err
 	}
 
-	return response, nil
+	defer func() {
+		if p := recover(); p != nil {
+			_ = uow.Rollback(ctx)
+			panic(p)
+		}
+		if err != nil {
+			_ = uow.Rollback(ctx)
+		}
+	}()
+
+	newUser, err := uc.UserDAO.Register(ctx, tx, user)
+	if err != nil {
+		return RegisterDTO{}, err
+	}
+	if err = uow.Commit(ctx); err != nil {
+		return RegisterDTO{}, err
+	}
+
+	return newUser, err
 }
 
 func (uc *UserCommands) Login(ctx context.Context, dto LoginDTO) (LoginDTO, error) {
