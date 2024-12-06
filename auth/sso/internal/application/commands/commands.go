@@ -5,8 +5,6 @@ import (
 	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application/persistence"
 	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/domain/entity"
 	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/domain/vo"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
 )
 
 type Auth interface {
@@ -23,6 +21,8 @@ func NewUserCommands(dao persistence.UserDAO) *UserCommands {
 	return &UserCommands{UserDAO: dao}
 }
 
+// TODO: add user_id as UUID and make new value object
+
 func (uc *UserCommands) Register(ctx context.Context, dto RegisterDTO) (RegisterDTO, error) {
 	email, err := vo.NewEmail(dto.Email)
 	if err != nil {
@@ -32,14 +32,16 @@ func (uc *UserCommands) Register(ctx context.Context, dto RegisterDTO) (Register
 	if err != nil {
 		return RegisterDTO{}, err
 	}
-
-	// TODO: add user_id as UUID and make new value object
-
 	user := entity.NewUser(email, password)
+
+	err = uc.UserDAO.Exists(ctx, email.Email)
+	if err != nil {
+		return RegisterDTO{}, err
+	}
 
 	response, err := uc.UserDAO.Register(ctx, user)
 	if err != nil {
-		return RegisterDTO{}, status.Error(codes.Canceled, "failed to register user")
+		return RegisterDTO{}, err
 	}
 
 	return response, nil

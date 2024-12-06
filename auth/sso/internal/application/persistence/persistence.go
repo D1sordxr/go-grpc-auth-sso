@@ -8,6 +8,7 @@ import (
 
 type UserDAO interface {
 	Register(ctx context.Context, entity entity.User) (commands.RegisterDTO, error)
+	Exists(ctx context.Context, email string) error
 }
 
 type UOW struct {
