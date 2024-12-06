@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application/commands"
+	loadUserCommands "github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application/commands"
 	loadConfig "github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/infrastructure/config"
-	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/infrastructure/db"
+	loadDatabase "github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/infrastructure/db"
 	loadLogger "github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/infrastructure/logger"
 	loadApp "github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/presentation/app"
 	loadGRPCServer "github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/presentation/grpc/auth"
@@ -23,10 +23,10 @@ func main() {
 	logger := loadLogger.NewLogger(cfg)
 	logger.Info("starting application", slog.String("mode", cfg.AppConfig.Mode))
 
-	database := db.NewConnection(&cfg.DBConfig)
+	database := loadDatabase.NewConnection(&cfg.DBConfig)
 	_ = database
 
-	userCommands := commands.NewUserCommands() // TODO: logic
+	userCommands := loadUserCommands.NewUserCommands() // TODO: logic
 	authService := loadGRPCServer.NewUserAuthService(userCommands)
 	gRPCServer := loadGRPCServer.NewGRPCServer(authService)
 

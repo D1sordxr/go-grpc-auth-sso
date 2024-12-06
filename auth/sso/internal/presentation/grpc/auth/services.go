@@ -47,14 +47,15 @@ func (s *UserAuthService) Login(ctx context.Context, req *services.LoginRequest)
 
 	response, err := s.auth.Login(ctx, dto)
 	if err != nil {
-		return nil, status.Error(codes.Aborted, "application error happened")
+		return nil, status.Error(codes.Aborted, "application error")
 	}
 
-	_ = response
-	//token := response.Token
-	// TODO: token has to be string
-	return &services.LoginResponse{}, nil
+	dto.Token = response.Token
 
+	return &services.LoginResponse{
+		Message: "Successfully logged in!",
+		Token:   dto.Token,
+	}, nil
 }
 
 func (s *UserAuthService) IsAdmin(ctx context.Context, req *services.IsAdminRequest) (*services.IsAdminResponse, error) {
