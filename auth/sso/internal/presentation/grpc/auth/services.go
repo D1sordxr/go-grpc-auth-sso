@@ -33,9 +33,15 @@ func (s *UserAuthService) Register(ctx context.Context, req *services.RegisterRe
 		Password: req.GetPassword(),
 	}
 
-	_ = dto
+	response, err := s.auth.Register(ctx, dto)
+	if err != nil {
+		return nil, status.Error(codes.Aborted, "application error")
+	}
 
-	return &services.RegisterResponse{}, nil
+	return &services.RegisterResponse{
+		Message: "string",
+		UserId:  response.UserID,
+	}, nil
 }
 
 func (s *UserAuthService) Login(ctx context.Context, req *services.LoginRequest) (*services.LoginResponse, error) {
@@ -50,15 +56,15 @@ func (s *UserAuthService) Login(ctx context.Context, req *services.LoginRequest)
 		return nil, status.Error(codes.Aborted, "application error")
 	}
 
-	dto.Token = response.Token
-
 	return &services.LoginResponse{
 		Message: "Successfully logged in!",
-		Token:   dto.Token,
+		Token:   response.Token,
 	}, nil
 }
 
 func (s *UserAuthService) IsAdmin(ctx context.Context, req *services.IsAdminRequest) (*services.IsAdminResponse, error) {
-	// TODO: Реализовать проверку админских прав
+
+	// TODO: is admin
+
 	return &services.IsAdminResponse{}, nil
 }
