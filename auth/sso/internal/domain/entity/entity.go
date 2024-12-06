@@ -1,4 +1,4 @@
-package aggregate
+package entity
 
 import "github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/domain/vo"
 

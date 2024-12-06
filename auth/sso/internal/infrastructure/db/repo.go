@@ -3,6 +3,7 @@ package db
 import (
 	"context"
 	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application/commands"
+	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/domain/entity"
 )
 
 type UserDAO struct {
@@ -13,7 +14,7 @@ func NewUserDAO(conn Connection) *UserDAO {
 	return &UserDAO{Conn: conn}
 }
 
-func (dao *UserDAO) Register(ctx context.Context, dto commands.RegisterDTO) (commands.RegisterDTO, error) {
+func (dao *UserDAO) Register(ctx context.Context, entity entity.User) (commands.RegisterDTO, error) {
 	err := dao.Conn.QueryRow(ctx, `
 	
 	`).Scan()

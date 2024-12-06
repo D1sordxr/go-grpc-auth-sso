@@ -3,6 +3,7 @@ package commands
 import (
 	"context"
 	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application/persistence"
+	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/domain/entity"
 	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/domain/vo"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -32,9 +33,11 @@ func (uc *UserCommands) Register(ctx context.Context, dto RegisterDTO) (Register
 		return RegisterDTO{}, err
 	}
 
-	// TODO: change user id which is SERIAL to UUID
+	// TODO: add user_id as UUID and make new value object
 
-	response, err := uc.UserDAO.Register(ctx, dto)
+	user := entity.NewUser(email, password)
+
+	response, err := uc.UserDAO.Register(ctx, user)
 	if err != nil {
 		return RegisterDTO{}, status.Error(codes.Canceled, "failed to register user")
 	}
