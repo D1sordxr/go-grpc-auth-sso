@@ -8,10 +8,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-const (
-	emptyValue = 0
-)
-
 type Auth interface {
 	Register(ctx context.Context, dto commands.RegisterDTO) (commands.RegisterDTO, error)
 	Login(ctx context.Context, dto commands.LoginDTO) (commands.LoginDTO, error)

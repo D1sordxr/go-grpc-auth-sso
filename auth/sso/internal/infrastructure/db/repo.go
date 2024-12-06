@@ -1,0 +1,18 @@
+package db
+
+import (
+	"context"
+	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application/commands"
+)
+
+type UserDAO struct {
+	Conn Connection
+}
+
+func NewUserDAO(conn Connection) *UserDAO {
+	return &UserDAO{Conn: conn}
+}
+
+func (dao *UserDAO) Register(ctx context.Context, dto commands.RegisterDTO) (commands.RegisterDTO, error) {
+	return commands.RegisterDTO{}, nil
+}

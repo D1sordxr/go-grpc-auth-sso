@@ -2,6 +2,7 @@ package commands
 
 import (
 	"context"
+	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application/persistence"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -13,11 +14,11 @@ type Auth interface {
 }
 
 type UserCommands struct {
-	// access to storage
+	UserDAO persistence.UserDAO
 }
 
-func NewUserCommands() *UserCommands {
-	return &UserCommands{}
+func NewUserCommands(dao persistence.UserDAO) *UserCommands {
+	return &UserCommands{UserDAO: dao}
 }
 
 func (uc *UserCommands) Register(ctx context.Context, dto RegisterDTO) (RegisterDTO, error) {
