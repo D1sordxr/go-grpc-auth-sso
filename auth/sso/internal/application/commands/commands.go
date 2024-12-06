@@ -3,6 +3,7 @@ package commands
 import (
 	"context"
 	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application/persistence"
+	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/domain/vo"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -22,16 +23,23 @@ func NewUserCommands(dao persistence.UserDAO) *UserCommands {
 }
 
 func (uc *UserCommands) Register(ctx context.Context, dto RegisterDTO) (RegisterDTO, error) {
-	if dto.Email == "" {
-		return RegisterDTO{}, status.Error(codes.InvalidArgument, "email can not be empty")
+	email, err := vo.NewEmail(dto.Email)
+	if err != nil {
+		return RegisterDTO{}, err
 	}
-	if dto.Password == "" {
-		return RegisterDTO{}, status.Error(codes.InvalidArgument, "password can not be empty")
+	password, err := vo.NewPassword(dto.Password)
+	if err != nil {
+		return RegisterDTO{}, err
 	}
 
-	_ = ctx
+	// TODO: change user id which is SERIAL to UUID
 
-	return RegisterDTO{}, nil
+	response, err := uc.UserDAO.Register(ctx, dto)
+	if err != nil {
+		return RegisterDTO{}, status.Error(codes.Canceled, "failed to register user")
+	}
+
+	return response, nil
 }
 
 func (uc *UserCommands) Login(ctx context.Context, dto LoginDTO) (LoginDTO, error) {

@@ -14,5 +14,11 @@ func NewUserDAO(conn Connection) *UserDAO {
 }
 
 func (dao *UserDAO) Register(ctx context.Context, dto commands.RegisterDTO) (commands.RegisterDTO, error) {
+	err := dao.Conn.QueryRow(ctx, `
+	
+	`).Scan()
+	if err != nil {
+		return commands.RegisterDTO{}, err
+	}
 	return commands.RegisterDTO{}, nil
 }
