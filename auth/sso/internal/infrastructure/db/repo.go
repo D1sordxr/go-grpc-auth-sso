@@ -3,6 +3,7 @@ package db
 import (
 	"context"
 	"errors"
+	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application/commands"
 	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/domain/entity"
 	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/domain/exceptions"
 	"github.com/jackc/pgx/v5"
@@ -50,6 +51,7 @@ func (dao *UserDAO) Exists(ctx context.Context, email string) error {
 	return nil
 }
 
-func (dao *UserDAO) Load(ctx context.Context, email string) (entity.User, error) {
-	return entity.User{}, nil
+func (dao *UserDAO) Load(ctx context.Context, email string) (commands.User, error) {
+	password := []byte("a_password")
+	return commands.User{Password: password}, nil
 }

@@ -4,6 +4,7 @@ import (
 	"context"
 	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application/persistence"
 	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/domain/entity"
+	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/domain/exceptions"
 	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/domain/vo"
 )
 
@@ -19,7 +20,10 @@ type UserCommands struct {
 }
 
 func NewUserCommands(dao UserDAO, uow persistence.UoWManager) *UserCommands {
-	return &UserCommands{UserDAO: dao, UoWManager: uow}
+	return &UserCommands{
+		UserDAO:    dao,
+		UoWManager: uow,
+	}
 }
 
 func (uc *UserCommands) Register(ctx context.Context, dto RegisterDTO) (RegisterDTO, error) {
@@ -83,10 +87,13 @@ func (uc *UserCommands) Login(ctx context.Context, dto LoginDTO) (LoginDTO, erro
 	}
 
 	loggingUser, err := uc.UserDAO.Load(ctx, email.Email)
+	if err != nil {
+		return LoginDTO{}, err
+	}
 
-	_, _ = password, loggingUser
-
-	// TODO: match passwords
+	if !password.Matches(loggingUser.Password) {
+		return LoginDTO{}, exceptions.PasswordsDoNotMatch
+	}
 
 	// TODO: Token returning (make vo.Token)
 

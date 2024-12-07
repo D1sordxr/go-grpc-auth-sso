@@ -8,5 +8,5 @@ import (
 type UserDAO interface {
 	Register(ctx context.Context, tx interface{}, entity entity.User) error
 	Exists(ctx context.Context, email string) error
-	Load(ctx context.Context, email string) (entity.User, error)
+	Load(ctx context.Context, email string) (User, error)
 }

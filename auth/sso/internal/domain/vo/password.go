@@ -24,12 +24,12 @@ func NewPassword(password string) (Password, error) {
 }
 
 // Matches and GetHashedPassword methods for tests
-func (p Password) Matches(plainPassword string) bool {
-	if plainPassword == "" {
+func (p Password) Matches(plainPassword []byte) bool {
+	if len(plainPassword) == 0 {
 		return false
 	}
 
-	err := bcrypt.CompareHashAndPassword(p.HashedPassword, []byte(plainPassword))
+	err := bcrypt.CompareHashAndPassword(p.HashedPassword, plainPassword)
 	return err == nil
 }
 

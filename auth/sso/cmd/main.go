@@ -26,6 +26,7 @@ func main() {
 	database := loadDatabase.NewConnection(&cfg.DBConfig)
 	uowManager := loadDatabase.NewUoWManager(database)
 	userDAO := loadDatabase.NewUserDAO(database)
+
 	userCommands := loadUserCommands.NewUserCommands(userDAO, uowManager)
 
 	authService := loadGRPCServer.NewUserAuthService(userCommands)
