@@ -81,7 +81,7 @@ func (uc *UserCommands) Login(ctx context.Context, dto LoginDTO) (LoginDTO, erro
 	if err != nil {
 		return LoginDTO{}, err
 	}
-	err = uc.UserDAO.Exists(ctx, email.Email) // Could be omitted
+	err = uc.UserDAO.Exists(ctx, email.Email)
 	if err != nil {
 		return LoginDTO{}, err
 	}
@@ -92,7 +92,7 @@ func (uc *UserCommands) Login(ctx context.Context, dto LoginDTO) (LoginDTO, erro
 	}
 
 	if !password.Matches(loggingUser.Password) {
-		return LoginDTO{}, exceptions.PasswordsDoNotMatch
+		return LoginDTO{}, exceptions.InvalidCredentials
 	}
 
 	// TODO: Token returning (make vo.Token)
