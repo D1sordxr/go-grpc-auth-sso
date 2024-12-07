@@ -22,8 +22,6 @@ func NewUserCommands(dao UserDAO, uow persistence.UoWManager) *UserCommands {
 	return &UserCommands{UserDAO: dao, UoWManager: uow}
 }
 
-// TODO: add user_id as UUID and make new value object
-
 func (uc *UserCommands) Register(ctx context.Context, dto RegisterDTO) (RegisterDTO, error) {
 	userID := vo.NewUserID()
 	email, err := vo.NewEmail(dto.Email)
