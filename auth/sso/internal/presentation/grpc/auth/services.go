@@ -11,7 +11,7 @@ import (
 type Auth interface {
 	Register(ctx context.Context, dto commands.RegisterDTO) (commands.RegisterDTO, error)
 	Login(ctx context.Context, dto commands.LoginDTO) (commands.LoginDTO, error)
-	//IsAdmin(ctx context.Context, dto commands.IsAdminDTO) (commands.IsAdminDTO, error)
+	IsAdmin(ctx context.Context, dto commands.IsAdminDTO) (commands.IsAdminDTO, error)
 }
 
 type UserAuthService struct {
@@ -31,11 +31,12 @@ func (s *UserAuthService) Register(ctx context.Context, req *services.RegisterRe
 
 	response, err := s.auth.Register(ctx, dto)
 	if err != nil {
-		return nil, status.Error(codes.Aborted, "application error")
+		return &services.RegisterResponse{Message: err.Error()},
+			status.Error(codes.Aborted, "application error")
 	}
 
 	return &services.RegisterResponse{
-		Message: "string",
+		Message: "Successfully registered!",
 		UserId:  response.UserID,
 	}, nil
 }
