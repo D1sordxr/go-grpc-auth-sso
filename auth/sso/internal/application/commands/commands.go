@@ -25,6 +25,7 @@ func NewUserCommands(dao UserDAO, uow persistence.UoWManager) *UserCommands {
 // TODO: add user_id as UUID and make new value object
 
 func (uc *UserCommands) Register(ctx context.Context, dto RegisterDTO) (RegisterDTO, error) {
+	userID := vo.NewUserID()
 	email, err := vo.NewEmail(dto.Email)
 	if err != nil {
 		return RegisterDTO{}, err
@@ -38,7 +39,7 @@ func (uc *UserCommands) Register(ctx context.Context, dto RegisterDTO) (Register
 		return RegisterDTO{}, err
 	}
 
-	user := entity.NewUser(email, password)
+	user := entity.NewUser(userID, email, password)
 	uow := uc.UoWManager.GetUoW()
 
 	tx, err := uow.Begin(ctx)
@@ -56,7 +57,7 @@ func (uc *UserCommands) Register(ctx context.Context, dto RegisterDTO) (Register
 		}
 	}()
 
-	newUser, err := uc.UserDAO.Register(ctx, tx, user)
+	err = uc.UserDAO.Register(ctx, tx, user)
 	if err != nil {
 		return RegisterDTO{}, err
 	}
@@ -64,11 +65,14 @@ func (uc *UserCommands) Register(ctx context.Context, dto RegisterDTO) (Register
 		return RegisterDTO{}, err
 	}
 
-	return newUser, err
+	return RegisterDTO{
+		UserID: userID.UserID.String(),
+	}, err
 }
 
 func (uc *UserCommands) Login(ctx context.Context, dto LoginDTO) (LoginDTO, error) {
 	_, _ = ctx, dto
+
 	return LoginDTO{}, nil
 }
 

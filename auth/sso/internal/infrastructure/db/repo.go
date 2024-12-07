@@ -3,7 +3,6 @@ package db
 import (
 	"context"
 	"errors"
-	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application/commands"
 	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/domain/entity"
 	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/domain/exceptions"
 	"github.com/jackc/pgx/v5"
@@ -17,23 +16,19 @@ func NewUserDAO(conn Connection) *UserDAO {
 	return &UserDAO{Conn: conn}
 }
 
-func (dao *UserDAO) Register(ctx context.Context, tx interface{}, entity entity.User) (commands.RegisterDTO, error) {
+func (dao *UserDAO) Register(ctx context.Context, tx interface{}, entity entity.User) error {
 	user := ConvertEntityToModel(entity)
 
 	conn := tx.(pgx.Tx)
-	query := `INSERT INTO users (email, password, created_at)
-					VALUES ($1, $2, NOW())
-				RETURNING id`
+	query := `INSERT INTO users (user_id, email, password, created_at)
+					VALUES ($1, $2, $3, NOW())`
 
-	row := conn.QueryRow(ctx, query, user.Email, user.Password)
-	err := row.Scan(
-		&user.UserID,
-	)
+	_, err := conn.Exec(ctx, query, user.UserID, user.Email, user.Password)
 	if err != nil {
-		return commands.RegisterDTO{}, err
+		return err
 	}
 
-	return commands.RegisterDTO{UserID: user.UserID}, nil
+	return nil
 }
 
 func (dao *UserDAO) Exists(ctx context.Context, email string) error {

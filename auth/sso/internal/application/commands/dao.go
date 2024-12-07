@@ -6,6 +6,6 @@ import (
 )
 
 type UserDAO interface {
-	Register(ctx context.Context, tx interface{}, entity entity.User) (RegisterDTO, error)
+	Register(ctx context.Context, tx interface{}, entity entity.User) error
 	Exists(ctx context.Context, email string) error
 }

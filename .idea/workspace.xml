@@ -5,7 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a0c3205f-8cf3-46cb-ab4c-699636d8cd82" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/auth/sso/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/auth/sso/cmd/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth/sso/internal/domain/vo/user_id.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/sso/internal/application/commands/commands.go" beforeDir="false" afterPath="$PROJECT_DIR$/auth/sso/internal/application/commands/commands.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/sso/internal/application/commands/dao.go" beforeDir="false" afterPath="$PROJECT_DIR$/auth/sso/internal/application/commands/dao.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/sso/internal/application/commands/dto.go" beforeDir="false" afterPath="$PROJECT_DIR$/auth/sso/internal/application/commands/dto.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/sso/internal/domain/entity/entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/auth/sso/internal/domain/entity/entity.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/sso/internal/infrastructure/db/convertors.go" beforeDir="false" afterPath="$PROJECT_DIR$/auth/sso/internal/infrastructure/db/convertors.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/sso/internal/infrastructure/db/models.go" beforeDir="false" afterPath="$PROJECT_DIR$/auth/sso/internal/infrastructure/db/models.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/sso/internal/infrastructure/db/repo.go" beforeDir="false" afterPath="$PROJECT_DIR$/auth/sso/internal/infrastructure/db/repo.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

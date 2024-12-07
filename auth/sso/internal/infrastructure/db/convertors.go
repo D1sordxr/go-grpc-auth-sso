@@ -6,6 +6,7 @@ import (
 
 func ConvertEntityToModel(user entity.User) User {
 	return User{
+		UserID:   user.UserID.UserID,
 		Email:    user.Email.Email,
 		Password: user.Password.HashedPassword,
 	}

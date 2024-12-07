@@ -1,10 +1,13 @@
 package db
 
-import "time"
+import (
+	"github.com/google/uuid"
+	"time"
+)
 
 type User struct {
+	UserID    uuid.UUID
 	Email     string
 	Password  []byte
-	UserID    int64
 	CreatedAt time.Time
 }

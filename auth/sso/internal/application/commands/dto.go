@@ -1,7 +1,7 @@
 package commands
 
 type RegisterDTO struct {
-	UserID   int64  `json:"user_id"`
+	UserID   string `json:"user_id"`
 	Email    string `json:"email"`
 	Password string `json:"password"`
 }
