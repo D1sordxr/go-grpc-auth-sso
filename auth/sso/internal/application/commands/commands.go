@@ -95,9 +95,12 @@ func (uc *UserCommands) Login(ctx context.Context, dto LoginDTO) (LoginDTO, erro
 		return LoginDTO{}, exceptions.InvalidCredentials
 	}
 
-	// TODO: Token returning (make vo.Token)
+	token, err := vo.NewToken(loggingUser.UserID.String())
+	if err != nil {
+		return LoginDTO{}, err
+	}
 
-	return LoginDTO{}, nil
+	return LoginDTO{Token: token.Token}, nil
 }
 
 func (uc *UserCommands) IsAdmin(ctx context.Context, dto IsAdminDTO) (IsAdminDTO, error) {

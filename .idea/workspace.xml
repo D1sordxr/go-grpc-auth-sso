@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a0c3205f-8cf3-46cb-ab4c-699636d8cd82" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/auth/sso/internal/domain/exceptions/token.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth/sso/internal/domain/vo/token.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/sso/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/auth/sso/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/sso/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/auth/sso/go.sum" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/auth/sso/internal/application/commands/commands.go" beforeDir="false" afterPath="$PROJECT_DIR$/auth/sso/internal/application/commands/commands.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/sso/internal/domain/exceptions/password.go" beforeDir="false" afterPath="$PROJECT_DIR$/auth/sso/internal/domain/exceptions/password.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
