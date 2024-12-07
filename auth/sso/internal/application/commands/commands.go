@@ -69,7 +69,26 @@ func (uc *UserCommands) Register(ctx context.Context, dto RegisterDTO) (Register
 }
 
 func (uc *UserCommands) Login(ctx context.Context, dto LoginDTO) (LoginDTO, error) {
-	_, _ = ctx, dto
+	email, err := vo.NewEmail(dto.Email)
+	if err != nil {
+		return LoginDTO{}, err
+	}
+	password, err := vo.NewPassword(dto.Password)
+	if err != nil {
+		return LoginDTO{}, err
+	}
+	err = uc.UserDAO.Exists(ctx, email.Email) // Could be omitted
+	if err != nil {
+		return LoginDTO{}, err
+	}
+
+	loggingUser, err := uc.UserDAO.Load(ctx, email.Email)
+
+	_, _ = password, loggingUser
+
+	// TODO: match passwords
+
+	// TODO: Token returning (make vo.Token)
 
 	return LoginDTO{}, nil
 }

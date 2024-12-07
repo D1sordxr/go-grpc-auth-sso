@@ -49,3 +49,7 @@ func (dao *UserDAO) Exists(ctx context.Context, email string) error {
 
 	return nil
 }
+
+func (dao *UserDAO) Load(ctx context.Context, email string) (entity.User, error) {
+	return entity.User{}, nil
+}

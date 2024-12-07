@@ -6,6 +6,7 @@ type User struct {
 	UserID   vo.UserID
 	Email    vo.Email
 	Password vo.Password
+	AppID    int32
 }
 
 func NewUser(userID vo.UserID, email vo.Email, password vo.Password) User {

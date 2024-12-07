@@ -31,7 +31,9 @@ func (s *UserAuthService) Register(ctx context.Context, req *services.RegisterRe
 
 	response, err := s.auth.Register(ctx, dto)
 	if err != nil {
-		return &services.RegisterResponse{Message: err.Error()},
+		return &services.RegisterResponse{
+				Message: err.Error(),
+			},
 			status.Error(codes.Aborted, "application error")
 	}
 
@@ -50,7 +52,9 @@ func (s *UserAuthService) Login(ctx context.Context, req *services.LoginRequest)
 
 	response, err := s.auth.Login(ctx, dto)
 	if err != nil {
-		return nil, status.Error(codes.Aborted, "application error")
+		return &services.LoginResponse{
+			Message: err.Error(),
+		}, status.Error(codes.Aborted, "application error")
 	}
 
 	return &services.LoginResponse{
