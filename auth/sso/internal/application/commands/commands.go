@@ -8,6 +8,22 @@ import (
 	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/domain/vo"
 )
 
+type RegisterUserCommand struct {
+	Email    string `json:"email" binding:"required"`
+	Password string `json:"password" binding:"required"`
+}
+
+type LoginUserCommand struct {
+	Email    string `json:"email" binding:"required"`
+	Password string `json:"password" binding:"required"`
+	AppID    int32  `json:"app_id" binding:"required"`
+	Token    string `json:"token"`
+}
+
+type IsAdminUserCommand struct {
+	UserID int32 `json:"user_id" binding:"required"`
+}
+
 type Auth interface {
 	Register(ctx context.Context, dto RegisterDTO) (RegisterDTO, error)
 	Login(ctx context.Context, dto LoginDTO) (LoginDTO, error)
@@ -86,7 +102,7 @@ func (uc *UserCommands) Login(ctx context.Context, dto LoginDTO) (LoginDTO, erro
 		return LoginDTO{}, err
 	}
 
-	loggingUser, err := uc.UserDAO.Load(ctx, email.Email)
+	loggingUser, err := uc.UserDAO.Load(ctx, email.Email) // TODO: uc.UserDAO.Load(ctx, email.Email)
 	if err != nil {
 		return LoginDTO{}, err
 	}

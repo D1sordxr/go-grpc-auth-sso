@@ -16,7 +16,8 @@ type Auth interface {
 
 type UserAuthService struct {
 	services.UnimplementedAuthServer
-	auth Auth
+	auth       Auth
+	AuthServer services.AuthServer
 }
 
 func NewUserAuthService(auth Auth) *UserAuthService {
