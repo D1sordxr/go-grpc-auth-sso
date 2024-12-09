@@ -1,7 +1,8 @@
 package main
 
 import (
-	loadUserCommands "github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application/commands"
+	loadUserCommandsService "github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application"
+	loadHandlers "github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application/handlers"
 	loadConfig "github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/infrastructure/config"
 	loadDatabase "github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/infrastructure/db"
 	loadLogger "github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/infrastructure/logger"
@@ -27,9 +28,17 @@ func main() {
 	uowManager := loadDatabase.NewUoWManager(database)
 	userDAO := loadDatabase.NewUserDAO(database)
 
-	userCommands := loadUserCommands.NewUserCommands(userDAO, uowManager)
+	// command service v2
+	registerUserHandler := loadHandlers.NewRegisterUserHandler(userDAO, uowManager)
+	loginUserHandler := loadHandlers.NewLoginUserHandler(userDAO, uowManager)
+	isAdminUserHandler := loadHandlers.NewIsAdminUserHandler(userDAO, uowManager)
 
-	authService := loadGRPCServer.NewUserAuthService(userCommands)
+	userCommandsService := loadUserCommandsService.NewUserCommands(registerUserHandler, loginUserHandler, isAdminUserHandler)
+	// command service v2
+
+	// userCommands := loadUserCommands.NewUserCommands(userDAO, uowManager)
+
+	authService := loadGRPCServer.NewUserAuthService(userCommandsService)
 	gRPCServer := loadGRPCServer.NewGRPCServer(authService)
 
 	app := loadApp.NewApp(cfg, logger.Logger, gRPCServer)

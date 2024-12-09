@@ -13,17 +13,29 @@ type UserCommandsInterface interface {
 }
 
 type UserCommands struct {
-	Register *handlers.RegisterUserHandler
-	Login    *handlers.LoginUserHandler
-	IsAdmin  *handlers.IsAdminUserHandler
+	RegisterUserHandler *handlers.RegisterUserHandler
+	LoginUserHandler    *handlers.LoginUserHandler
+	IsAdminUserHandler  *handlers.IsAdminUserHandler
 }
 
 func NewUserCommands(register *handlers.RegisterUserHandler,
 	login *handlers.LoginUserHandler,
 	isAdmin *handlers.IsAdminUserHandler) *UserCommands {
 	return &UserCommands{
-		Register: register,
-		Login:    login,
-		IsAdmin:  isAdmin,
+		RegisterUserHandler: register,
+		LoginUserHandler:    login,
+		IsAdminUserHandler:  isAdmin,
 	}
+}
+
+func (uc *UserCommands) Register(ctx context.Context, command commands.RegisterUserCommand) (commands.RegisterDTO, error) {
+	return uc.RegisterUserHandler.Handle(ctx, command)
+}
+
+func (uc *UserCommands) Login(ctx context.Context, command commands.LoginUserCommand) (commands.LoginDTO, error) {
+	return uc.LoginUserHandler.Handle(ctx, command)
+}
+
+func (uc *UserCommands) IsAdmin(ctx context.Context, command commands.IsAdminUserCommand) (commands.IsAdminDTO, error) {
+	return uc.IsAdminUserHandler.Handle(ctx, command)
 }

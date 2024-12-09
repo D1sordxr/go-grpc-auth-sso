@@ -2,6 +2,7 @@ package auth
 
 import (
 	"context"
+	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application"
 	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application/commands"
 	services "github.com/D1sordxr/go-grpc-auth-sso/auth/sso/protobuf"
 	"google.golang.org/grpc/codes"
@@ -16,21 +17,20 @@ type Auth interface {
 
 type UserAuthService struct {
 	services.UnimplementedAuthServer
-	auth       Auth
-	AuthServer services.AuthServer
+	Commands application.UserCommandsInterface
 }
 
-func NewUserAuthService(auth Auth) *UserAuthService {
-	return &UserAuthService{auth: auth}
+func NewUserAuthService(commands application.UserCommandsInterface) *UserAuthService {
+	return &UserAuthService{Commands: commands}
 }
 
 func (s *UserAuthService) Register(ctx context.Context, req *services.RegisterRequest) (*services.RegisterResponse, error) {
-	dto := commands.RegisterDTO{
+	command := commands.RegisterUserCommand{
 		Email:    req.GetEmail(),
 		Password: req.GetPassword(),
 	}
 
-	response, err := s.auth.Register(ctx, dto)
+	response, err := s.Commands.Register(ctx, command)
 	if err != nil {
 		return &services.RegisterResponse{
 				Message: err.Error(),
@@ -45,13 +45,13 @@ func (s *UserAuthService) Register(ctx context.Context, req *services.RegisterRe
 }
 
 func (s *UserAuthService) Login(ctx context.Context, req *services.LoginRequest) (*services.LoginResponse, error) {
-	dto := commands.LoginDTO{
+	command := commands.LoginUserCommand{
 		Email:    req.GetEmail(),
 		Password: req.GetPassword(),
 		AppID:    req.GetAppId(),
 	}
 
-	response, err := s.auth.Login(ctx, dto)
+	response, err := s.Commands.Login(ctx, command)
 	if err != nil {
 		return &services.LoginResponse{
 			Message: err.Error(),
@@ -65,15 +65,19 @@ func (s *UserAuthService) Login(ctx context.Context, req *services.LoginRequest)
 }
 
 func (s *UserAuthService) IsAdmin(ctx context.Context, req *services.IsAdminRequest) (*services.IsAdminResponse, error) {
+	// TODO: ........
 	command := commands.IsAdminUserCommand{
 		UserID: req.UserId,
 	}
-	response, err := s.AuthServer.IsAdmin(ctx, command)
+	response, err := s.Commands.IsAdmin(ctx, command)
 	if err != nil {
 		return &services.IsAdminResponse{
 			Message: err.Error(),
 		}, status.Error(codes.Aborted, "application error")
 	}
 
-	return &services.IsAdminResponse{}, nil
+	return &services.IsAdminResponse{
+		IsAdmin: response.UserID != 0,
+		Message: "",
+	}, nil
 }

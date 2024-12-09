@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"context"
 	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application/commands"
 	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application/persistence"
 )
@@ -15,4 +16,9 @@ func NewIsAdminUserHandler(dao commands.UserDAO, uow persistence.UoWManager) *Is
 		UserDAO:    dao,
 		UoWManager: uow,
 	}
+}
+
+func (h *IsAdminUserHandler) Handle(ctx context.Context, command commands.IsAdminUserCommand) (commands.IsAdminDTO, error) {
+	_, _ = ctx, command
+	return commands.IsAdminDTO{}, nil
 }
