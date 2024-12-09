@@ -48,6 +48,7 @@ func (uc *UserCommands) Register(ctx context.Context, dto RegisterDTO) (Register
 	if err != nil {
 		return RegisterDTO{}, err
 	}
+
 	err = uc.UserDAO.Exists(ctx, email.Email)
 	if err != nil {
 		return RegisterDTO{}, err
@@ -107,7 +108,8 @@ func (uc *UserCommands) Login(ctx context.Context, dto LoginDTO) (LoginDTO, erro
 		return LoginDTO{}, exceptions.InvalidCredentials
 	}
 
-	token, err := vo.NewToken(loggingUser.UserID.String())
+	i := int32(1)
+	token, err := vo.NewToken(loggingUser.UserID.String(), i)
 	if err != nil {
 		return LoginDTO{}, err
 	}

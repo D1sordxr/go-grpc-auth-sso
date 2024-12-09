@@ -10,7 +10,7 @@ import (
 )
 
 type UserAuthService struct {
-	Service  services.UnimplementedAuthServer
+	services.UnimplementedAuthServer
 	Commands application.UserCommandsInterface
 }
 

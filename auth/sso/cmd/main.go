@@ -6,6 +6,7 @@ import (
 	loadConfig "github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/infrastructure/config"
 	loadDatabase "github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/infrastructure/db"
 	loadLogger "github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/infrastructure/logger"
+	loadTokenService "github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/infrastructure/token"
 	loadApp "github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/presentation/app"
 	loadGRPCServer "github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/presentation/grpc/auth"
 	"log"
@@ -28,9 +29,11 @@ func main() {
 	uowManager := loadDatabase.NewUoWManager(database)
 	userDAO := loadDatabase.NewUserDAO(database)
 
+	tokenService := loadTokenService.NewTokenService(&cfg.TokenConfig)
+
 	// command service v2
 	registerUserHandler := loadHandlers.NewRegisterUserHandler(userDAO, uowManager)
-	loginUserHandler := loadHandlers.NewLoginUserHandler(userDAO, uowManager)
+	loginUserHandler := loadHandlers.NewLoginUserHandler(userDAO, uowManager, tokenService)
 	isAdminUserHandler := loadHandlers.NewIsAdminUserHandler(userDAO, uowManager)
 
 	userCommandsService := loadUserCommandsService.NewUserCommands(registerUserHandler, loginUserHandler, isAdminUserHandler)

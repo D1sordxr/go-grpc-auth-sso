@@ -12,7 +12,7 @@ type Token struct {
 	Token string
 }
 
-func NewToken(userID string) (Token, error) {
+func NewToken(userID string, appID int32) (Token, error) {
 	claims := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.RegisteredClaims{
 		Issuer:    userID,
 		ExpiresAt: jwt.NewNumericDate(time.Now().Add(24 * time.Hour)),
