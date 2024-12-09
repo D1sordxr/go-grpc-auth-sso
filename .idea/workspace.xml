@@ -5,17 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a0c3205f-8cf3-46cb-ab4c-699636d8cd82" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/auth/sso/internal/infrastructure/token/config/config.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth/sso/internal/infrastructure/token/token.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/sso/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/auth/sso/cmd/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/sso/configs/app/local.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/auth/sso/configs/app/local.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/sso/internal/application/commands/commands.go" beforeDir="false" afterPath="$PROJECT_DIR$/auth/sso/internal/application/commands/commands.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/auth/sso/internal/application/handlers/login.go" beforeDir="false" afterPath="$PROJECT_DIR$/auth/sso/internal/application/handlers/login.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/sso/internal/domain/vo/token.go" beforeDir="false" afterPath="$PROJECT_DIR$/auth/sso/internal/domain/vo/token.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/sso/internal/infrastructure/config/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/auth/sso/internal/infrastructure/config/config/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/sso/internal/presentation/grpc/auth/services.go" beforeDir="false" afterPath="$PROJECT_DIR$/auth/sso/internal/presentation/grpc/auth/services.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/sso/internal/presentation/grpc/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/auth/sso/internal/presentation/grpc/config/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/sso/internal/application/persistence/persistence.go" beforeDir="false" afterPath="$PROJECT_DIR$/auth/sso/internal/application/persistence/persistence.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -9,10 +9,16 @@ import (
 	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/infrastructure/token"
 )
 
+type TokenServiceInterface interface {
+	// TODO: GenerateNewToken()
+	// TODO: ValidateToken() if needed
+	// TODO: move from here to persistence
+}
+
 type LoginUserHandler struct {
-	TokenService *token.Service
 	UserDAO      commands.UserDAO
 	UoWManager   persistence.UoWManager
+	TokenService *token.Service
 }
 
 func NewLoginUserHandler(dao commands.UserDAO, uow persistence.UoWManager, token *token.Service) *LoginUserHandler {
