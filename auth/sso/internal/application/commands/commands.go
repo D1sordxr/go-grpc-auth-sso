@@ -8,6 +8,12 @@ import (
 	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/domain/vo"
 )
 
+type UserCommandsInterface interface {
+	Register(ctx context.Context, dto RegisterDTO) (RegisterDTO, error)
+	Login(ctx context.Context, dto LoginDTO) (LoginDTO, error)
+	IsAdmin(ctx context.Context, dto IsAdminDTO) (IsAdminDTO, error)
+}
+
 type RegisterUserCommand struct {
 	Email    string `json:"email" binding:"required"`
 	Password string `json:"password" binding:"required"`
@@ -21,13 +27,7 @@ type LoginUserCommand struct {
 }
 
 type IsAdminUserCommand struct {
-	UserID int32 `json:"user_id" binding:"required"`
-}
-
-type Auth interface {
-	Register(ctx context.Context, dto RegisterDTO) (RegisterDTO, error)
-	Login(ctx context.Context, dto LoginDTO) (LoginDTO, error)
-	IsAdmin(ctx context.Context, dto IsAdminDTO) (IsAdminDTO, error)
+	UserID int64 `json:"user_id" binding:"required"`
 }
 
 type UserCommands struct {

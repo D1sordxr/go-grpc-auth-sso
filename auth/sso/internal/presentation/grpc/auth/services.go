@@ -65,8 +65,15 @@ func (s *UserAuthService) Login(ctx context.Context, req *services.LoginRequest)
 }
 
 func (s *UserAuthService) IsAdmin(ctx context.Context, req *services.IsAdminRequest) (*services.IsAdminResponse, error) {
-
-	// TODO: is admin
+	command := commands.IsAdminUserCommand{
+		UserID: req.UserId,
+	}
+	response, err := s.AuthServer.IsAdmin(ctx, command)
+	if err != nil {
+		return &services.IsAdminResponse{
+			Message: err.Error(),
+		}, status.Error(codes.Aborted, "application error")
+	}
 
 	return &services.IsAdminResponse{}, nil
 }
