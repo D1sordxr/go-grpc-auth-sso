@@ -9,14 +9,8 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-type Auth interface {
-	Register(ctx context.Context, dto commands.RegisterDTO) (commands.RegisterDTO, error)
-	Login(ctx context.Context, dto commands.LoginDTO) (commands.LoginDTO, error)
-	IsAdmin(ctx context.Context, dto commands.IsAdminDTO) (commands.IsAdminDTO, error)
-}
-
 type UserAuthService struct {
-	services.UnimplementedAuthServer
+	Service  services.UnimplementedAuthServer
 	Commands application.UserCommandsInterface
 }
 
