@@ -8,21 +8,21 @@ import (
 	"github.com/stretchr/testify/mock"
 )
 
-type MockDAO struct {
+type MockStorage struct {
 	mock.Mock
 }
 
-func (t *MockDAO) Register(ctx context.Context, tx interface{}, entity entity.User) error {
+func (t *MockStorage) Register(ctx context.Context, tx interface{}, entity entity.User) error {
 	args := t.Called(ctx, entity, tx)
 	return args.Error(0)
 }
 
-func (t *MockDAO) Load(ctx context.Context, email string) (commands.User, error) {
+func (t *MockStorage) Load(ctx context.Context, email string) (commands.User, error) {
 	args := t.Called(ctx, email)
 	return commands.User{}, args.Error(0)
 }
 
-func (t *MockDAO) Exists(ctx context.Context, email string) error {
+func (t *MockStorage) Exists(ctx context.Context, email string) error {
 	args := t.Called(ctx, email)
 	return args.Error(0)
 }
