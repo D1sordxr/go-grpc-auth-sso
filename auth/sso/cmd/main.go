@@ -8,7 +8,8 @@ import (
 	loadLogger "github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/infrastructure/logger"
 	loadTokenService "github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/infrastructure/token"
 	loadApp "github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/presentation/app"
-	loadGRPCServer "github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/presentation/grpc/auth"
+	loadGRPCServer "github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/presentation/grpc"
+	loadGRPCService "github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/presentation/grpc/auth"
 	"log"
 	"log/slog"
 )
@@ -34,7 +35,7 @@ func main() {
 
 	userCommandsService := loadUserCommandsService.NewUserCommands(registerUserHandler, loginUserHandler, isAdminUserHandler)
 
-	authService := loadGRPCServer.NewUserAuthService(userCommandsService)
+	authService := loadGRPCService.NewUserAuthService(userCommandsService)
 	gRPCServer := loadGRPCServer.NewGRPCServer(authService)
 
 	app := loadApp.NewApp(cfg, logger.Logger, gRPCServer)

@@ -1,4 +1,4 @@
-package auth
+package grpc
 
 import (
 	services "github.com/D1sordxr/go-grpc-auth-sso/auth/sso/protobuf"
