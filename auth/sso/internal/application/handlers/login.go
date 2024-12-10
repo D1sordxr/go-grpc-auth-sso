@@ -6,26 +6,24 @@ import (
 	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application/persistence"
 	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/domain/exceptions"
 	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/domain/vo"
-	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/infrastructure/token"
 )
 
-type TokenServiceInterface interface {
-	// TODO: GenerateNewToken()
-	// TODO: ValidateToken() if needed
-	// TODO: move from here to persistence
+type TokenService interface {
+	GenerateToken(userID string, appID int32) (string, error)
+	ValidateToken(token string) (bool, error)
 }
 
 type LoginUserHandler struct {
 	UserDAO      commands.UserDAO
 	UoWManager   persistence.UoWManager
-	TokenService *token.Service
+	TokenService TokenService
 }
 
-func NewLoginUserHandler(dao commands.UserDAO, uow persistence.UoWManager, token *token.Service) *LoginUserHandler {
+func NewLoginUserHandler(dao commands.UserDAO, uow persistence.UoWManager, tokenService TokenService) *LoginUserHandler {
 	return &LoginUserHandler{
 		UserDAO:      dao,
 		UoWManager:   uow,
-		TokenService: token,
+		TokenService: tokenService,
 	}
 }
 
@@ -53,10 +51,10 @@ func (h *LoginUserHandler) Handle(ctx context.Context, command commands.LoginUse
 		return commands.LoginDTO{}, exceptions.InvalidCredentials
 	}
 
-	token, err := vo.NewToken(loggingUser.UserID.String(), appID)
+	token, err := h.TokenService.GenerateToken(loggingUser.UserID.String(), appID)
 	if err != nil {
 		return commands.LoginDTO{}, err
 	}
 
-	return commands.LoginDTO{Token: token.Token}, nil
+	return commands.LoginDTO{Token: token}, nil
 }

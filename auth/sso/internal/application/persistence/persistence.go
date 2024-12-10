@@ -13,8 +13,3 @@ type UoW interface {
 type UoWManager interface {
 	GetUoW() UoW
 }
-
-type TokenServiceInterface interface {
-	// TODO: GenerateNewToken()
-	// TODO: ValidateToken() if needed
-}

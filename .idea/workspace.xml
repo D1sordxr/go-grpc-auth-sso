@@ -5,9 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a0c3205f-8cf3-46cb-ab4c-699636d8cd82" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/auth/sso/internal/infrastructure/token/exceptions.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth/sso/internal/infrastructure/token/service.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/sso/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/auth/sso/cmd/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/auth/sso/internal/application/handlers/login.go" beforeDir="false" afterPath="$PROJECT_DIR$/auth/sso/internal/application/handlers/login.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/auth/sso/internal/application/persistence/persistence.go" beforeDir="false" afterPath="$PROJECT_DIR$/auth/sso/internal/application/persistence/persistence.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/sso/internal/domain/exceptions/token.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/sso/internal/domain/vo/token.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/sso/internal/infrastructure/token/token.go" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,11 +84,11 @@
       <recent name="C:\Users\Олег\go\src\aviasales\src\internal\todo" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Олег\go\src\awesomeProject3\auth\sso\internal\infrastructure\token" />
       <recent name="C:\Users\Олег\go\src\aviasales\auth\sso\internal\presentation\grpc\auth" />
       <recent name="C:\Users\Олег\go\src\aviasales\src\internal\logger\handlers" />
       <recent name="C:\Users\Олег\go\src\aviasales\src\internal\logger\zerolog" />
       <recent name="C:\Users\Олег\go\src\aviasales\auth\sso\internal\infrastructure\logger\handlers" />
-      <recent name="C:\Users\Олег\go\src\aviasales\auth\protos\gen\go\sso" />
     </key>
   </component>
   <component name="RunManager" selected="Makefile Target.up-prod">
