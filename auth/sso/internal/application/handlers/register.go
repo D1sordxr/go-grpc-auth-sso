@@ -65,5 +65,6 @@ func (h *RegisterUserHandler) Handle(ctx context.Context, command commands.Regis
 
 	return commands.RegisterDTO{
 		UserID: user.StringUserID(),
+		Email:  user.Email.Email, // testing
 	}, err
 }
