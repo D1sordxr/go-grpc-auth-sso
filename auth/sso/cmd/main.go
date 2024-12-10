@@ -38,5 +38,5 @@ func main() {
 	gRPCServer := loadGRPCServer.NewGRPCServer(authService)
 
 	app := loadApp.NewApp(cfg, logger.Logger, gRPCServer)
-	app.RunApp()
+	app.Run()
 }

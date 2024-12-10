@@ -27,28 +27,7 @@ func NewApp(config *config.Config,
 	}
 }
 
-func (a *App) Run() error {
-	const operation = "gRPC.Run"
-	port := a.Config.GRPCConfig.Port
-	if err := a.GRPCServer.RegisterServer(); err != nil {
-		return fmt.Errorf("failed to register gRPC server: %w", err)
-	}
-
-	l, err := net.Listen("tcp", fmt.Sprintf(":%d", port))
-	if err != nil {
-		return fmt.Errorf("%s: %w", operation, err)
-	}
-
-	a.Logger.Info("grpc server started", slog.String("port", fmt.Sprintf("%d", port)))
-
-	if err = a.GRPCServer.Server.Serve(l); err != nil {
-		return fmt.Errorf("%s: %w", operation, err)
-	}
-
-	return nil
-}
-
-func (a *App) RunApp() {
+func (a *App) Run() {
 	var err error
 	errorsChannel := make(chan error, 1)
 
@@ -73,7 +52,7 @@ func (a *App) RunApp() {
 }
 
 func (a *App) gRPCServerRun() error {
-	const operation = "gRPC.Run"
+	const operation = "gRPCServer.Run"
 	port := a.Config.GRPCConfig.Port
 	if err := a.GRPCServer.RegisterServer(); err != nil {
 		return fmt.Errorf("failed to register gRPC server: %w", err)
