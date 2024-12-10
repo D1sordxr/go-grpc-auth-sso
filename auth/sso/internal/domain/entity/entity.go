@@ -16,3 +16,7 @@ func NewUser(userID vo.UserID, email vo.Email, password vo.Password) User {
 		Password: password,
 	}
 }
+
+func (u *User) StringUserID() string {
+	return u.UserID.UserID.String()
+}

@@ -30,12 +30,7 @@ func (h *RegisterUserHandler) Handle(ctx context.Context, command commands.Regis
 	if err != nil {
 		return commands.RegisterDTO{}, err
 	}
-	err = h.UserDAO.Exists(ctx, email.Email)
-	if err != nil {
-		return commands.RegisterDTO{}, err
-	}
 
-	user := entity.NewUser(userID, email, password)
 	uow := h.UoWManager.GetUoW()
 
 	tx, err := uow.Begin(ctx)
@@ -44,14 +39,21 @@ func (h *RegisterUserHandler) Handle(ctx context.Context, command commands.Regis
 	}
 
 	defer func() {
-		if p := recover(); p != nil {
+		if r := recover(); r != nil {
 			_ = uow.Rollback(ctx)
-			panic(p)
+			panic(r)
 		}
 		if err != nil {
 			_ = uow.Rollback(ctx)
 		}
 	}()
+
+	err = h.UserDAO.Exists(ctx, email.Email)
+	if err != nil {
+		return commands.RegisterDTO{}, err
+	}
+
+	user := entity.NewUser(userID, email, password)
 
 	err = h.UserDAO.Register(ctx, tx, user)
 	if err != nil {
@@ -62,6 +64,6 @@ func (h *RegisterUserHandler) Handle(ctx context.Context, command commands.Regis
 	}
 
 	return commands.RegisterDTO{
-		UserID: userID.UserID.String(),
+		UserID: user.StringUserID(),
 	}, err
 }
