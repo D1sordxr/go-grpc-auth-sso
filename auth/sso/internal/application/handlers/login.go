@@ -4,7 +4,7 @@ import (
 	"context"
 	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application/commands"
 	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application/persistence"
-	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/domain/exceptions"
+	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/domain/entity"
 	"github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/domain/vo"
 )
 
@@ -37,18 +37,16 @@ func (h *LoginUserHandler) Handle(ctx context.Context, command commands.LoginUse
 		return commands.LoginDTO{}, err
 	}
 	appID := command.AppID
-	err = h.UserDAO.Exists(ctx, email.Email)
-	if err != nil {
-		return commands.LoginDTO{}, err
-	}
 
 	loggingUser, err := h.UserDAO.Load(ctx, email.Email) // TODO: h.UserDAO.Load(ctx, email.Email)
 	if err != nil {
 		return commands.LoginDTO{}, err
 	}
 
-	if !password.Matches(loggingUser.Password) {
-		return commands.LoginDTO{}, exceptions.InvalidCredentials
+	user := entity.NewUser(vo.StringUserID(loggingUser.UserID), email, password)
+
+	if err = user.ValidatePassword(password, loggingUser.Password); err != nil {
+		return commands.LoginDTO{}, err
 	}
 
 	token, err := h.TokenService.GenerateToken(loggingUser.UserID.String(), appID)

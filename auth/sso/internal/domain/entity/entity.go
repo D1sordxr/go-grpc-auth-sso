@@ -20,3 +20,7 @@ func NewUser(userID vo.UserID, email vo.Email, password vo.Password) User {
 func (u *User) StringUserID() string {
 	return u.UserID.UserID.String()
 }
+
+func (u *User) ValidatePassword(password vo.Password, plainPassword []byte) error {
+	return password.Matches(plainPassword)
+}

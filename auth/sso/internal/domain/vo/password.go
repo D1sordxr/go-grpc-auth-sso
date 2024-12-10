@@ -23,14 +23,16 @@ func NewPassword(password string) (Password, error) {
 	return Password{HashedPassword: hashedPassword}, nil
 }
 
-// Matches and GetHashedPassword methods for tests
-func (p Password) Matches(plainPassword []byte) bool {
-	if len(plainPassword) == 0 {
-		return false
+func (p Password) Matches(plainPassword []byte) error {
+	if len(plainPassword) < minPasswordLength {
+		return exceptions.InvalidPasswordLength
 	}
 
 	err := bcrypt.CompareHashAndPassword(p.HashedPassword, plainPassword)
-	return err == nil
+	if err != nil {
+		return exceptions.InvalidCredentials
+	}
+	return nil
 }
 
 func (p Password) GetHashedPassword() []byte {
