@@ -9,7 +9,6 @@ type Email struct {
 	Email string
 }
 
-// NewEmail creates new Email value object
 func NewEmail(email string) (Email, error) {
 	if email == "" {
 		return Email{}, exceptions.InvalidEmailLength
