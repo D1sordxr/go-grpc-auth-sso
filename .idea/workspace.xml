@@ -6,10 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a0c3205f-8cf3-46cb-ab4c-699636d8cd82" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/sso/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/auth/sso/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/sso/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/auth/sso/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/sso/internal/application/handlers/mocks.go" beforeDir="false" afterPath="$PROJECT_DIR$/auth/sso/internal/application/handlers/mocks.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/sso/internal/application/handlers/register.go" beforeDir="false" afterPath="$PROJECT_DIR$/auth/sso/internal/application/handlers/register.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/auth/sso/internal/application/handlers/register_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/auth/sso/internal/application/handlers/register_test.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -53,6 +49,7 @@
     "DefaultGoTemplateProperty": "Go File",
     "Go Build.go build main.go.executor": "Run",
     "Go Test.TestSuccessCreateCustomerHandle in github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application/handlers.executor": "Run",
+    "Go Test.TestSuccessRegisterUserHandle in github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application/handlers.executor": "Run",
     "Makefile Target.up-prod.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
@@ -89,7 +86,7 @@
       <recent name="C:\Users\Олег\go\src\aviasales\src\internal\logger\zerolog" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Test.TestSuccessCreateCustomerHandle in github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application/handlers">
+  <component name="RunManager" selected="Go Test.TestSuccessRegisterUserHandle in github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application/handlers">
     <configuration name="go build load-config.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="aviasales" />
       <working_directory value="$PROJECT_DIR$" />
@@ -120,6 +117,18 @@
       <pattern value="^\QTestSuccessCreateCustomerHandle\E$" />
       <method v="2" />
     </configuration>
+    <configuration name="TestSuccessRegisterUserHandle in github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application/handlers" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="grpc-auth-sso" />
+      <working_directory value="$PROJECT_DIR$/auth/sso/internal/application/handlers" />
+      <root_directory value="$PROJECT_DIR$/auth/sso" />
+      <kind value="PACKAGE" />
+      <package value="github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application/handlers" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestSuccessRegisterUserHandle\E$" />
+      <method v="2" />
+    </configuration>
     <configuration name="up-prod" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
       <makefile filename="$PROJECT_DIR$/CleanGolangOrderApp/Makefile" target="up-prod" workingDirectory="" arguments="">
         <envs />
@@ -130,13 +139,14 @@
       <item itemvalue="Go Build.go build load-config.go" />
       <item itemvalue="Go Build.go build main.go" />
       <item itemvalue="Go Test.TestSuccessCreateCustomerHandle in github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application/handlers" />
+      <item itemvalue="Go Test.TestSuccessRegisterUserHandle in github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application/handlers" />
       <item itemvalue="Makefile Target.up-prod" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestSuccessRegisterUserHandle in github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application/handlers" />
         <item itemvalue="Go Test.TestSuccessCreateCustomerHandle in github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application/handlers" />
         <item itemvalue="Makefile Target.up-prod" />
-        <item itemvalue="Go Build.go build main.go" />
         <item itemvalue="Go Build.go build main.go" />
         <item itemvalue="Go Build.go build main.go" />
       </list>

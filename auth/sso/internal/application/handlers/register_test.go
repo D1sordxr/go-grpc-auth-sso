@@ -8,7 +8,8 @@ import (
 	"testing"
 )
 
-func TestSuccessCreateCustomerHandle(t *testing.T) {
+func TestSuccessRegisterUserHandle(t *testing.T) {
+	fixedUserID := "123e4567-e89b-12d3-a456-426614174000"
 	registerUserCommand := commands.RegisterUserCommand{}
 	if err := faker.FakeData(&registerUserCommand); err != nil {
 		t.Fatal(err)
@@ -27,6 +28,11 @@ func TestSuccessCreateCustomerHandle(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
+
+	if len(userDTO.UserID) != len(fixedUserID) {
+		t.Fatalf("unexpected userID's length: %v, expected: %v", len(userDTO.UserID), len(fixedUserID))
+	}
+	t.Logf("userID's length %v is equal to expected %v", len(userDTO.UserID), len(fixedUserID))
 
 	if userDTO.Email != registerUserCommand.Email {
 		t.Fatalf("expected email: %s, got: %s", registerUserCommand.Email, userDTO.Email)
