@@ -19,7 +19,11 @@ func (t *MockStorage) Register(ctx context.Context, tx interface{}, entity entit
 
 func (t *MockStorage) Load(ctx context.Context, email string) (commands.User, error) {
 	args := t.Called(ctx, email)
-	return commands.User{}, args.Error(0)
+	user, ok := args.Get(0).(commands.User)
+	if !ok {
+		return commands.User{}, args.Error(1)
+	}
+	return user, args.Error(1)
 }
 
 func (t *MockStorage) Exists(ctx context.Context, email string) error {

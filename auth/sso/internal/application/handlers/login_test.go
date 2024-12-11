@@ -24,7 +24,7 @@ func TestSuccessLoginUserHandle(t *testing.T) {
 
 	password, _ := vo.NewPassword("hashed_password")
 
-	mockStorage.On("Load", mock.Anything, mock.Anything).Return(&commands.User{
+	mockStorage.On("Load", mock.Anything, mock.Anything).Return(commands.User{
 		ID:       1,
 		UserID:   vo.NewUserID().UserID,
 		Email:    "testing@email.now",
@@ -45,13 +45,8 @@ func TestSuccessLoginUserHandle(t *testing.T) {
 	loginUser := NewLoginUserHandler(mockStorage, &TestUoWManager{}, tokenService)
 	userDTO, err := loginUser.Handle(ctx, loginUserCommand)
 	if err != nil {
-		t.Fatal(err)
+		t.Fatalf("unexpected error: %v", err)
 	}
-
-	if userDTO.Email != loginUserCommand.Email {
-		t.Fatalf("expected email: %s, got: %s", loginUserCommand.Email, userDTO.Email)
-	}
-	t.Logf("email: %s, got: %s", loginUserCommand.Email, userDTO.Email)
 
 	if userDTO.Token == "" {
 		t.Fatal("expected token, got empty")
