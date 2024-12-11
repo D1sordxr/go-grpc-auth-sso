@@ -45,7 +45,7 @@ func (h *LoginUserHandler) Handle(ctx context.Context, command commands.LoginUse
 
 	user := entity.NewUser(vo.StringUserID(loggingUser.UserID), email, password)
 
-	if err = user.ValidatePassword(password, loggingUser.Password); err != nil {
+	if err = user.ValidatePassword(loggingUser.Password); err != nil {
 		return commands.LoginDTO{}, err
 	}
 
