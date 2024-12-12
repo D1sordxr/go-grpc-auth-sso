@@ -32,7 +32,7 @@ func (h *LoginUserHandler) Handle(ctx context.Context, command commands.LoginUse
 	if err != nil {
 		return commands.LoginDTO{}, err
 	}
-	password, err := vo.NewPassword(command.Password)
+	password, err := vo.NewBytePassword(command.Password)
 	if err != nil {
 		return commands.LoginDTO{}, err
 	}

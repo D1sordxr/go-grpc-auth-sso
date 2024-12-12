@@ -22,13 +22,12 @@ func TestSuccessLoginUserHandle(t *testing.T) {
 	ctx := context.Background()
 	mockStorage := new(MockStorage)
 
-	password, _ := vo.NewPassword("hashed_password")
-
+	hashedPassword, _ := vo.NewPassword("hashed_password")
 	mockStorage.On("Load", mock.Anything, mock.Anything).Return(commands.User{
 		ID:       1,
 		UserID:   vo.NewUserID().UserID,
 		Email:    "testing@email.now",
-		Password: password.GetHashedPassword(),
+		Password: hashedPassword.HashedPassword,
 		AppID:    1,
 	}, nil)
 

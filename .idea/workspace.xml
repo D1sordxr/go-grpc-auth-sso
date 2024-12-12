@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a0c3205f-8cf3-46cb-ab4c-699636d8cd82" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/sso/internal/application/handlers/login.go" beforeDir="false" afterPath="$PROJECT_DIR$/auth/sso/internal/application/handlers/login.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/auth/sso/internal/application/handlers/login_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/auth/sso/internal/application/handlers/login_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/sso/internal/application/handlers/mocks.go" beforeDir="false" afterPath="$PROJECT_DIR$/auth/sso/internal/application/handlers/mocks.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/sso/internal/domain/vo/password.go" beforeDir="false" afterPath="$PROJECT_DIR$/auth/sso/internal/domain/vo/password.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,34 +46,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultGoTemplateProperty": "Go File",
-    "Go Build.go build main.go.executor": "Run",
-    "Go Test.TestSuccessCreateCustomerHandle in github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application/handlers.executor": "Run",
-    "Go Test.TestSuccessLoginUserHandle in github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application/handlers (1).executor": "Run",
-    "Go Test.TestSuccessLoginUserHandle in github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application/handlers.executor": "Run",
-    "Go Test.TestSuccessRegisterUserHandle in github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application/handlers.executor": "Run",
-    "Makefile Target.up-prod.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.go.formatter.settings.were.checked": "true",
-    "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "RunOnceActivity.go.modules.automatic.dependencies.download": "true",
-    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
-    "git-widget-placeholder": "main",
-    "go.import.settings.migrated": "true",
-    "last_opened_file_path": "C:/Users/Олег/go/src/aviasales/src/internal/presentation/api/v1/controllers/handlers",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "go.vgo"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
+    &quot;Go Build.go build main.go.executor&quot;: &quot;Run&quot;,
+    &quot;Go Test.TestSuccessCreateCustomerHandle in github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application/handlers.executor&quot;: &quot;Run&quot;,
+    &quot;Go Test.TestSuccessLoginUserHandle in github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application/handlers (1).executor&quot;: &quot;Run&quot;,
+    &quot;Go Test.TestSuccessLoginUserHandle in github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application/handlers.executor&quot;: &quot;Run&quot;,
+    &quot;Go Test.TestSuccessRegisterUserHandle in github.com/D1sordxr/go-grpc-auth-sso/auth/sso/internal/application/handlers.executor&quot;: &quot;Run&quot;,
+    &quot;Makefile Target.up-prod.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.automatic.dependencies.download&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Олег/go/src/aviasales/src/internal/presentation/api/v1/controllers/handlers&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;go.vgo&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Олег\go\src\aviasales\src\internal\presentation\api\v1\controllers\handlers" />
@@ -186,16 +187,5 @@
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/auth/sso/internal/application/handlers/login.go</url>
-          <line>38</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

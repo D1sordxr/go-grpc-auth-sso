@@ -8,6 +8,7 @@ import (
 const minPasswordLength = 8
 
 type Password struct {
+	Password       []byte
 	HashedPassword []byte
 }
 
@@ -21,6 +22,15 @@ func NewPassword(password string) (Password, error) {
 		return Password{}, exceptions.HashingError
 	}
 	return Password{HashedPassword: hashedPassword}, nil
+}
+
+func NewBytePassword(password string) (Password, error) {
+	if len(password) < minPasswordLength {
+		return Password{}, exceptions.InvalidPasswordLength
+	}
+
+	bytePassword := []byte(password)
+	return Password{Password: bytePassword}, nil
 }
 
 func (p Password) Matches(plainPassword []byte) error {
