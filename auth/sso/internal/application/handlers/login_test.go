@@ -13,7 +13,7 @@ import (
 )
 
 // TODO: login changes
-func TestSuccessLoginUserHandle(t *testing.T) {
+func TestSuccessLoginUserHandler(t *testing.T) {
 	loginUserCommand := commands.LoginUserCommand{}
 	if err := faker.FakeData(&loginUserCommand); err != nil {
 		t.Fatal(err)

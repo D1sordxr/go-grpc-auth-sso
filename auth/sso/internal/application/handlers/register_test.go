@@ -8,7 +8,7 @@ import (
 	"testing"
 )
 
-func TestSuccessRegisterUserHandle(t *testing.T) {
+func TestSuccessRegisterUserHandler(t *testing.T) {
 	fixedUserID := "123e4567-e89b-12d3-a456-426614174000"
 	registerUserCommand := commands.RegisterUserCommand{}
 	if err := faker.FakeData(&registerUserCommand); err != nil {
